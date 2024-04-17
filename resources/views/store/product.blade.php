@@ -64,14 +64,16 @@
                     <p>Còn hàng</p>
                 </div>
                 <div id="price_info_product">
-                    @if (count($prices) == 2)
-                        @foreach($prices as $price)
-                            @if ($price['type_price'] == 0)
-                                <p>{{number_format($price['price'])}}đ</p>
-                            @endif
-                        @endforeach
-                    @endif
-                    <p>{{number_format($prices[0]['price'])}}đ</p>
+                    @foreach($prices as $price)
+                        @if ($price['type_price'] == 0)
+                            <p>{{number_format($price['price'])}}đ</p>
+                        @endif
+                    @endforeach
+                    @foreach($prices as $price)
+                        @if ($price['type_price'] == 1)
+                            <p>{{number_format($price['price'])}}đ</p>
+                        @endif
+                    @endforeach
                 </div>
                 <div>
                     <p>Màu sắc</p>

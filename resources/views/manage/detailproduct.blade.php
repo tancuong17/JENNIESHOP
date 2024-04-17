@@ -48,17 +48,34 @@
             </div>
             <p>Giá</p>
             <div class="input-update-container">
-                <input value="{{$prices[0]['price']}}" type="text" class="input_info" placeholder="..." id="price">
+                @foreach($prices as $price)
+                    @if ($price['type_price'] == 1)
+                        <input value="{{$price['price']}}" type="text" class="input_info" placeholder="..." id="price">
+                    @endif
+                @endforeach
                 <button class="button">Cập nhật</button>
             </div>
             <p>Giá khuyến mãi</p>
-            <input value="{{$prices[1]['price']}}" type="text" class="input_info" placeholder="..." id="price-promotion">
-            <p>Thời gian khuyến mãi</p>
-            <div class="input-update-container">
-                <input type="date" class="input_info" placeholder="..." id="start-date-price-promotion">
-                <span>-</span>
-                <input type="date" class="input_info" placeholder="..." id="end-date-price-promotion">
-            </div>
+            @foreach($prices as $price)
+                @if ($price['type_price'] == 0)
+                    <input value="{{$price['price']}}" type="text" class="input_info" placeholder="..." id="price-promotion">
+                    <p>Thời gian khuyến mãi</p>
+                    <div class="input-update-container">
+                        <input value="{{date('Y-m-d', strtotime($price['created_at']))}}" type="date" class="input_info" placeholder="..." id="start-date-price-promotion">
+                        <span>-</span>
+                        <input value="{{date('Y-m-d', strtotime($price['updated_at']))}}" type="date" class="input_info" placeholder="..." id="end-date-price-promotion">
+                    </div>
+                @endif
+            @endforeach
+            @if (count($prices) == 1)
+                <input type="text" class="input_info" placeholder="..." id="price-promotion">
+                <p>Thời gian khuyến mãi</p>
+                <div class="input-update-container">
+                    <input type="date" class="input_info" placeholder="..." id="start-date-price-promotion">
+                    <span>-</span>
+                    <input type="date" class="input_info" placeholder="..." id="end-date-price-promotion">
+                </div>
+            @endif
             <div class="button-update-container">
                 <button class="button-w100" onclick="PricePromotion({{$product['id']}})">Cập nhật</button>
             </div>

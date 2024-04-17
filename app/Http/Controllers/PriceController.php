@@ -25,7 +25,7 @@ class PriceController extends Controller
         return Price::whereRaw("id_product = $id_product AND status = 1")->get();
     }
 
-    public function updateStatusByType($type){
-        return Price::whereRaw("type_price = $type AND status = 1")->update(['status'=> 0]);
+    public function updateStatusByType($id_product, $type){
+        return Price::whereRaw("id_product = $id_product AND type_price = $type AND status = 1")->update(['status'=> 0]);
     }
 }

@@ -73,14 +73,16 @@
                 <h1>{{ $product['name'] }}</h1>
                 <div class="product_bottom">
                     <div class="price">
-                        @if (count($prices[$loop->index]) == 2)
-                            @foreach($prices[$loop->index] as $price)
-                                @if ($price['type_price'] == 0)
-                                    <p>{{number_format($price['price'])}}đ</p>
-                                @endif
-                            @endforeach
-                        @endif
-                        <p>{{number_format($prices[$loop->index][0]['price'])}}đ</p>
+                        @foreach($prices[$loop->index] as $price)
+                            @if ($price['type_price'] == 0)
+                                <p>{{number_format($price['price'])}}đ</p>
+                            @endif
+                        @endforeach
+                        @foreach($prices[$loop->index] as $price)
+                            @if ($price['type_price'] == 1)
+                                <p>{{number_format($price['price'])}}đ</p>
+                            @endif
+                        @endforeach
                     </div>
                     <div class="add_to_cart">
                         <img src="{{env('URL_IMAGE')}}/images/cart.svg" alt="cart">

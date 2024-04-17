@@ -32,11 +32,10 @@ Route::get('getsize/{idColor}', function ($idColor){
 Route::post('pricepromotion', function (Request $request){
     try {
         $priceController = new PriceController();
-        $priceController->updateStatusByType(0);
+        $priceController->updateStatusByType($request->idProduct, 0);
         $priceController->add(array("id_product" => $request->idProduct, "price" => $request->price, "type_price" => 0, "creator" => 1, "created_at" => $request->startDate, "updated_at" => $request->endDate));
         return json_encode("Cập nhật thành công!");
     } catch (\Throwable $th) {
         return json_encode($th);
     }
-    
 });
