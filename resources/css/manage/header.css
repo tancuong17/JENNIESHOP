@@ -1,0 +1,42 @@
+#header_container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#user_logo {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#user_container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#user_container div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#user_container div p:nth-child(2) {
+    font-size: 12px;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.navigation li:not(:last-child):after {
+    content: "/";
+    margin: 0 15px;
+}

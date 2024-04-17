@@ -1,0 +1,141 @@
+@media only screen and (max-width: 1200px) {
+    #menu {
+        display: none;
+    }
+
+    #bars_container_mobile {
+        display: flex;
+        align-items: center;
+    }
+
+    #top_header {
+        display: none;
+    }
+
+    #search_form_container_mobile {
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        top: 4rem;
+        left: 0;
+        padding: 0.5rem;
+        border-bottom: 1px solid lightgray;
+        background-color: white;
+        z-index: 100;
+    }
+
+    #banner_slider{
+        margin-top: 6.55rem;
+    }
+
+    .product_bottom{
+        display: flex;
+        align-items: flex-start;
+        gap: 0.2rem;
+        flex-direction: column;
+    }
+
+    .add_to_cart{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product_container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #footer_info{
+        grid-template-columns: 1fr;
+    }
+
+    #footer_info_right{
+        padding-left: 0;
+    }
+
+    #send_mail_to_register{
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+        padding: 0.5rem;
+    }
+
+    #footer_info_left{
+        border: none;
+    }
+
+    #footer_info_right_top{
+        flex-direction: column;
+    }
+
+    #footer_info_right_top_left{
+        border: none;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    #cart_container p {
+        display: none;
+    }
+
+    #user_container p {
+        display: none;
+    }
+
+    #search_container {
+        display: none;
+    }
+
+    #catelory_container{
+        margin: 0 1rem 2rem;
+    }
+
+    .product_container{
+        margin: 0 1rem 2rem;
+    }
+
+    .text_title_left{
+        margin: 0 1rem 2rem;
+    }
+
+    #collection_container{
+        margin: 0 1rem 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    #policy_container{
+        padding: 1rem 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .product_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #footer_info_right_bottom{
+        grid-template-columns: 1fr;
+    }
+
+    #main_product_page{
+        margin: 8rem 0.5rem 2rem;
+    }
+
+    #image_product_container{
+        width: 100%;
+    }
+
+    #product_info_container{
+        flex-direction: column;
+    }
+
+    .navigation{
+        font-size: 0.8rem;
+    }
+
+    .navigation li:not(:last-child):after {
+        content: "/";
+        margin: 0 5px;
+    }
+}

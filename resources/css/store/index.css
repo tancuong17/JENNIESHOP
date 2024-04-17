@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Space Grotesk", sans-serif;
+    list-style-type: none;
+    transition: 0.2s linear all;
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e5e5e5;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance-: textfield;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+
+.cke_contents > iframe{
+  width: 100% !important;
+} 
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#banner_slider{
+  margin-top: 6rem;
+  height: 100%;
+}
+
+.title_text{
+  width: fit-content;
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.line p{
+  position: relative;
+  font-weight: 600;
+  z-index: 10;
+  background-color: white;
+}
+
+.line:before{
+  content: "";
+  width: 100%;
+  height: 0.2rem;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.text_title_center{
+  margin: 2rem auto;
+  padding: 0 50px;
+}
+
+.text_title_left{
+  margin: 0 4rem 2rem;
+}
+
+#catelory_container{
+  display: grid;
+  gap: 1rem;
+  margin: 0 4rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+#catelory_container div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  background-color: #e5ebec;
+  border-radius: 0.5rem;
+  color: #003644;
+}
+
+#catelory_container div:hover{
+  background: #003644;
+  color: #e5ebec;
+}
+
+#catelory_container div:hover .catelory_image{
+  filter: invert(96%) sepia(6%) saturate(130%) hue-rotate(141deg) brightness(96%) contrast(98%);
+}
+
+#catelory_container div p:nth-child(2){
+  font-weight: 700;
+}
+
+#catelory_container div p:nth-child(3){
+  font-weight: 100;
+  font-size: 14px;
+  text-align: center;
+}
+
+.product_container{
+  display: grid;
+  gap: 1rem;
+  margin: 0 4rem 2rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.product{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 2px 2px 11px hsla(0,3%,7%,.1)!important;
+  border-radius: 0.3rem;
+}
+
+.product img{
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.product h1{
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 0.5rem;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.product_bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.price{
+  display: flex;
+  gap: 0.3rem;
+}
+
+.price p:nth-child(1){
+  font-size: 14px;
+}
+
+.price p:nth-child(2){
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.add_to_cart{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid #003644;
+  padding: 0.2rem;
+  font-size: 12px;
+  border-radius: 0.2rem;
+}
+
+.add_to_cart img{
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+#collection_container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 4rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+}
+
+.collection{
+  position: relative;
+  overflow: hidden;
+}
+
+.collection img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collection:hover img{
+  transform: scale(1.1);
+}
+
+.collection_text{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 23px;
+  font-weight: 500;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}

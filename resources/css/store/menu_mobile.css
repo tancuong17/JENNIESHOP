@@ -1,0 +1,35 @@
+#menu_container_mobile {
+    position: relative;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+#menu_mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    background-color: white;
+}
+
+#menu_mobile ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+#close_menu_mobile {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
