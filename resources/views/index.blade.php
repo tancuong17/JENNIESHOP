@@ -74,7 +74,7 @@
                 <div class="product_bottom">
                     <div class="price">
                         @foreach($prices[$loop->index] as $price)
-                            @if ($price['type_price'] == 0)
+                            @if ($price['type_price'] == 0 && Carbon\Carbon::parse($price['created_at']) <= Carbon\Carbon::today() && Carbon\Carbon::parse($price['updated_at']) >= Carbon\Carbon::today())
                                 <p>{{number_format($price['price'])}}đ</p>
                             @endif
                         @endforeach

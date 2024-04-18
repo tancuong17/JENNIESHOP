@@ -86,6 +86,9 @@
 #price_info_product{
     display: flex;
     gap: 0.5rem;
+}
+
+#price_info_product_container{
     padding-bottom: 0.5rem;
     border-bottom: 1px dashed lightgray;
 }

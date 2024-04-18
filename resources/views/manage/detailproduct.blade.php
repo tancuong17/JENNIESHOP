@@ -53,7 +53,7 @@
                         <input value="{{$price['price']}}" type="text" class="input_info" placeholder="..." id="price">
                     @endif
                 @endforeach
-                <button class="button">Cập nhật</button>
+                <button class="button" onclick="UpdatePrice({{$product['id']}})">Cập nhật</button>
             </div>
             <p>Giá khuyến mãi</p>
             @foreach($prices as $price)

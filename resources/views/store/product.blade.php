@@ -63,17 +63,22 @@
                     <p>SKU: {{$product['sku_code']}}</p>
                     <p>Còn hàng</p>
                 </div>
-                <div id="price_info_product">
-                    @foreach($prices as $price)
-                        @if ($price['type_price'] == 0)
-                            <p>{{number_format($price['price'])}}đ</p>
-                        @endif
-                    @endforeach
-                    @foreach($prices as $price)
-                        @if ($price['type_price'] == 1)
-                            <p>{{number_format($price['price'])}}đ</p>
-                        @endif
-                    @endforeach
+                <div id="price_info_product_container">
+                    <div id="price_info_product">
+                        @foreach($prices as $price)
+                            @if ($price['type_price'] == 0 && Carbon\Carbon::parse($price['created_at']) <= Carbon\Carbon::today() && Carbon\Carbon::parse($price['updated_at']) >= Carbon\Carbon::today())
+                                <p>{{number_format($price['price'])}}đ</p>
+                            @endif
+                        @endforeach
+                        @foreach($prices as $price)
+                            @if ($price['type_price'] == 1)
+                                <p>{{number_format($price['price'])}}đ</p>
+                            @endif
+                        @endforeach
+                    </div>
+                    @if (count($prices) == 2 && Carbon\Carbon::parse($price['created_at']) <= Carbon\Carbon::today() && Carbon\Carbon::parse($price['updated_at']) >= Carbon\Carbon::today())
+                        <p>Thời gian khuyến mãi: từ ngày {{date('d-m-Y', strtotime($price['created_at']))}} đến ngày {{date('d-m-Y', strtotime($price['updated_at']))}}</p>
+                    @endif
                 </div>
                 <div>
                     <p>Màu sắc</p>

@@ -44,7 +44,6 @@
                         <th style="width: 5%; text-align: center">STT</th>
                         <th style="width: 10%">Mã SKU</th>
                         <th style="width: 60%">Tên</th>
-                        <th style="width: 10%">Giá</th>
                         <th style="width: 15%">Trạng thái</th>
                     </tr>
                     @foreach($products as $product)
@@ -52,7 +51,6 @@
                         <td style="text-align: center">{{ (Request::get('page') - 1) * $quantity + $loop->index + 1}}</td>
                         <td>{{$product['sku_code']}}</td>
                         <td>{{$product['name']}}</td>
-                        <td>{{ number_format($prices[$loop->index][0]['price']) }}đ</td>
                         <td>
                             @if ($product['status'] == 1)
                                 Đang kinh doanh

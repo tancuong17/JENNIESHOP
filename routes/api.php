@@ -39,3 +39,14 @@ Route::post('pricepromotion', function (Request $request){
         return json_encode($th);
     }
 });
+
+Route::post('updateprice', function (Request $request){
+    try {
+        $priceController = new PriceController();
+        $priceController->updateStatusByType($request->idProduct, 1);
+        $priceController->add(array("id_product" => $request->idProduct, "price" => $request->price, "type_price" => 1, "creator" => 1));
+        return json_encode("Cập nhật thành công!");
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});

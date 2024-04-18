@@ -9,3 +9,15 @@ function PricePromotion(idProduct) {
         }
     });
 }
+
+function UpdatePrice(idProduct) {
+    $.ajax({
+        type: "post",
+        url: "http://localhost/shop/api/updateprice",
+        data: {idProduct: idProduct, price: $("#price").val()},
+        dataType: "json",
+        success: function (response) {
+            alert(response);
+        }
+    });
+}
