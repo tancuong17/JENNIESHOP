@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ColorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('addproduct', [ProductController::class, 'add']);
+
+Route::post('updateproduct', [ProductController::class, 'update']);
 
 Route::get('getsize/{idColor}', function ($idColor){
     $sizeController = new SizeController();
@@ -50,3 +54,21 @@ Route::post('updateprice', function (Request $request){
         return json_encode($th);
     }
 });
+
+Route::post('updateimage', function (Request $request){
+    try {
+        $imageController = new ImageController();
+        $imagesRemove = json_decode($request->imagesRemoveProduct);
+        foreach ($imagesRemove as $idImage) {
+            $imageController->delete($idImage);
+        }
+        $imageController->add($request, $request->idProduct);
+        return json_encode("Cập nhật thành công!");
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
+Route::post('updatecolor', [ColorController::class, 'update']);
+
+

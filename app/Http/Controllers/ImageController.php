@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -15,7 +16,14 @@ class ImageController extends Controller
             $image->save();
         }
     }
+
     public function get($id_product){
         return Image::where('id_product', $id_product)->get();
+    }
+
+    public function delete($id_image){
+        $image = Image::where("id", $id_image)->get();
+        Storage::delete($image[0]->url);
+        Image::where('id', $id_image)->delete();
     }
 }

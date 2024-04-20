@@ -42,6 +42,15 @@ class ProductController extends Controller
         }
     }
 
+    public function update(Request $request){
+        try {
+            Product::whereRaw("id = $request->idProduct")->update(["$request->column" => $request->value]);
+            return json_encode("Cập nhật thành công");
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
+
     public function get($slug){
         try {
             $priceController = new PriceController();

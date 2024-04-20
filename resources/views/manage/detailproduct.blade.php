@@ -34,17 +34,17 @@
                 @endforeach
             </div>
             <div class="button-update-container">
-                <button class="button-w100">Cập nhật</button>
+                <button class="button-w100" onclick="UpdateImage({{$product['id']}})">Cập nhật</button>
             </div>
             <p>Mã SKU</p>
             <div class="input-update-container">
                 <input value="{{$product['sku_code']}}" type="text" class="input_info" placeholder="..." id="sku">
-                <button class="button">Cập nhật</button>
+                <button class="button" onclick="UpdateProduct({{$product['id']}}, 'sku_code', this)">Cập nhật</button>
             </div>
             <p>Tên</p>
             <div class="input-update-container">
                 <input value="{{$product['name']}}" type="text" class="input_info" placeholder="..." id="name">
-                <button class="button">Cập nhật</button>
+                <button class="button" onclick="UpdateProduct({{$product['id']}}, 'name', this)">Cập nhật</button>
             </div>
             <p>Giá</p>
             <div class="input-update-container">
@@ -87,7 +87,7 @@
                             <input value="{{$color['name']}}" type="text" placeholder="Tên màu sắc..." class="input_info name-color">
                             <input onchange="UploadImageColor(event)" class="image-color-upload-file" type="file" id="image-color-upload-{{$color['id']}}" accept="image/png, image/gif, image/jpeg">
                             <img class="image-color-upload" src={{env('URL_IMAGE')}}{{$color['url']}}/>
-                            <button class="button-w100">Cập nhật</button>
+                            <button class="button-w100" onclick="UpdateColor({{$color['id']}}, this)">Cập nhật</button>
                         </label>
                         <div class="color_input_container">
                             @foreach($sizes as $size)
@@ -115,13 +115,13 @@
             </div>
             <div class="detail-update-container">
                 <p>Chi tiết</p>
-                <button class="button">Cập nhật</button>
+                <button class="button" onclick=" UpdateDetailProduct({{$product['id']}})">Cập nhật</button>
             </div>
             <textarea id="detail" style="height: 500px">
                 {!!$product['detail']!!}
             </textarea>
             <div class="button-container">
-                <button id="remove_product_btn" onclick="AddProduct()">Xoá sản phẩm</button>
+                <button id="remove_product_btn">Xoá sản phẩm</button>
             </div>
         </div>
     </div>
@@ -129,7 +129,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{URL::asset('public/assets/vendor/ckeditor4/ckeditor.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/menu.js')}}"></script>
-<script src="{{URL::asset('resources/js/manage/addproduct.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/detailproduct.js')}}"></script>
 <script>
     CKEDITOR.config.allowedContent = true;

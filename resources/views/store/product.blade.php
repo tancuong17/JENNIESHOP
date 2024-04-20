@@ -76,9 +76,11 @@
                             @endif
                         @endforeach
                     </div>
-                    @if (count($prices) == 2 && Carbon\Carbon::parse($price['created_at']) <= Carbon\Carbon::today() && Carbon\Carbon::parse($price['updated_at']) >= Carbon\Carbon::today())
-                        <p>Thời gian khuyến mãi: từ ngày {{date('d-m-Y', strtotime($price['created_at']))}} đến ngày {{date('d-m-Y', strtotime($price['updated_at']))}}</p>
-                    @endif
+                    @foreach($prices as $price)
+                        @if ($price['type_price'] == 0 && Carbon\Carbon::parse($price['created_at']) <= Carbon\Carbon::today() && Carbon\Carbon::parse($price['updated_at']) >= Carbon\Carbon::today())
+                            <p>Thời gian khuyến mãi: từ ngày {{date('d-m-Y', strtotime($price['created_at']))}} đến ngày {{date('d-m-Y', strtotime($price['updated_at']))}}</p>
+                        @endif
+                    @endforeach
                 </div>
                 <div>
                     <p>Màu sắc</p>
