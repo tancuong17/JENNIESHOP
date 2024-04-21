@@ -41,4 +41,17 @@ class ColorController extends Controller
             return json_encode($th);
         }
     }
+
+    public function delete(Request $request){
+        try {
+            $color = Color::where("id", $request->idColor)->get();
+            Storage::delete($color[0]->url);
+            $sizeController = new SizeController();
+            $sizeController->deleteByIdColor($request->idColor);
+            Color::where('id', $request->idColor)->delete();
+            return json_encode("Xoá thành công");
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
 }

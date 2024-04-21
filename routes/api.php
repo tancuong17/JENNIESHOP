@@ -69,6 +69,22 @@ Route::post('updateimage', function (Request $request){
     }
 });
 
+Route::post('addsize', [SizeController::class, 'addOne']);
+
+Route::post('updatesize', [SizeController::class, 'update']);
+
+Route::post('deletesize', [SizeController::class, 'delete']);
+
+Route::post('addcolor', function (Request $request){
+    try {
+        $colorController = new ColorController();
+        $colorController->add($request, $request->idProduct);
+        return json_encode("Cập nhật thành công!");
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
 Route::post('updatecolor', [ColorController::class, 'update']);
 
-
+Route::post('deletecolor', [ColorController::class, 'delete']);
