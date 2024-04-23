@@ -115,13 +115,13 @@
             </div>
             <div class="detail-update-container">
                 <p>Chi tiết</p>
-                <button class="button" onclick=" UpdateDetailProduct({{$product['id']}})">Cập nhật</button>
+                <button class="button" onclick="UpdateDetailProduct({{$product['id']}})">Cập nhật</button>
             </div>
             <textarea id="detail" style="height: 500px">
                 {!!$product['detail']!!}
             </textarea>
             <div class="button-container">
-                <button id="remove_product_btn">Xoá sản phẩm</button>
+                <button id="remove_product_btn" onclick="DeleteProduct({{$product['id']}})">Xoá sản phẩm</button>
             </div>
         </div>
     </div>

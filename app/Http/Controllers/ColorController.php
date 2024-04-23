@@ -54,4 +54,12 @@ class ColorController extends Controller
             return json_encode($th);
         }
     }
+
+    public function deleteByIdProduct($idProduct){
+        $colors = Color::where("id_product", $idProduct)->get();
+        foreach ($colors as $color) {
+            Storage::delete($color->url);
+        }
+        Color::where('id_product', $idProduct)->delete();
+    }
 }

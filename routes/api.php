@@ -28,6 +28,12 @@ Route::post('addproduct', [ProductController::class, 'add']);
 
 Route::post('updateproduct', [ProductController::class, 'update']);
 
+Route::post('deleteproduct', function (Request $request){
+    $productController = new ProductController();
+    $result = $productController->delete($request->idProduct);
+    return json_encode($result);
+});
+
 Route::get('getsize/{idColor}', function ($idColor){
     $sizeController = new SizeController();
     return json_encode($sizeController->getByIdColor($idColor));
@@ -88,3 +94,5 @@ Route::post('addcolor', function (Request $request){
 Route::post('updatecolor', [ColorController::class, 'update']);
 
 Route::post('deletecolor', [ColorController::class, 'delete']);
+
+

@@ -26,4 +26,12 @@ class ImageController extends Controller
         Storage::delete($image[0]->url);
         Image::where('id', $id_image)->delete();
     }
+
+    public function deleteByIdProduct($idProduct){
+        $images = Image::where("id_product", $idProduct)->get();
+        foreach ($images as $image) {
+            Storage::delete($image->url);
+        }
+        Image::where('id_product', $idProduct)->delete();
+    }
 }

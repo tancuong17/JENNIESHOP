@@ -61,4 +61,8 @@ class SizeController extends Controller
     public function deleteByIdColor($idColor){
         Size::where('id_color', $idColor)->delete();
     }
+
+    public function deleteByIdProduct($idProduct){
+        Size::where('id_product', $idProduct)->delete();
+    }
 }

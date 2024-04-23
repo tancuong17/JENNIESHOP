@@ -85,4 +85,22 @@ class ProductController extends Controller
             return json_encode($th);
         }
     }
+
+    public function delete($idProduct){
+        try {
+            $priceController = new PriceController();
+            $imageController = new ImageController();
+            $colorController = new ColorController();
+            $sizeController = new SizeController();
+            $sizeController->deleteByIdProduct($idProduct);
+            $colorController->deleteByIdProduct($idProduct);
+            $priceController->deleteByIdProduct($idProduct);
+            $priceController->deleteByIdProduct($idProduct);
+            $imageController->deleteByIdProduct($idProduct);
+            Product::where('id', $idProduct)->delete();
+            return "Xoá thành công";
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
 }

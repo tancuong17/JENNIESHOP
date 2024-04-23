@@ -291,3 +291,18 @@ function UpdateSize(e, idSize) {
         }
     });
 }
+
+function DeleteProduct(idProduct) {
+    if (confirm("Bạn có thực sự muốn xoá") == true) {
+        $.ajax({
+            type: "post",
+            url: "http://localhost/shop/api/deleteproduct",
+            data: {"idProduct": idProduct},
+            dataType: "json",
+            success: function (response) {
+                alert(response);
+                window.location.href = "http://localhost/shop/manage/listproduct/2?page=1";
+            }
+        });
+    }
+}
