@@ -32,7 +32,7 @@
             <p>Tên</p>
             <input type="text" class="input_info" placeholder="..." id="name">
             <p>Giá</p>
-            <input type="text" class="input_info" placeholder="..." id="price">
+            <input onkeyup="FormatMoney(this, event)" type="text" class="input_info" placeholder="..." id="price">
             <p>Màu sắc</p>
             <div id="color_container">
                 <div class="color">

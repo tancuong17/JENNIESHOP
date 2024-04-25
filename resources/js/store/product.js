@@ -45,17 +45,17 @@ $('#color_container img').on('click', function () {
             $("#size_container").find("p").remove();
             response.forEach(element => {
                 $("#size_container").append(`
-                    <p>`+ element.name +`</p>
+                    <p onclick="ChooseSize(this)">`+ element.name +`</p>
                 `);
             });
         }
     });
 });
 
-$('#size_container p').on('click', function () {
+function ChooseSize(e) {
     $('#size_container p').attr("style", "border: 1px solid lightgray");
-    $(this).attr("style", "border: 1px solid black");
-});
+    $(e).attr("style", "border: 1px solid black");
+}
 
 $('#plus_quantity').on('click', function () {
     $("#quantity_add_to_cart").val(Number($("#quantity_add_to_cart").val()) + 1);

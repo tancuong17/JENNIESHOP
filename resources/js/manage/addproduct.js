@@ -98,7 +98,7 @@ function AddProduct() {
     let quantityColorPhoto = 0;
     let skuProduct = $("#sku").val();
     let nameProduct = $("#name").val();
-    let priceProduct = Number($("#price").val());
+    let priceProduct = Number($("#price").val().replaceAll(",", ""));
     let detailProduct = CKEDITOR.instances['detail'].getData();
     let colors = new Array();
     let imageProductUploadFiles = document.getElementsByClassName("image-product-upload-file");
@@ -142,4 +142,14 @@ function AddProduct() {
             alert(response);
         }
     });
+}
+
+function FormatMoney(element, event) {
+    if (event.keyCode >= 48 && event.keyCode <= 57 || event.keyCode >= 96 && event.keyCode <= 105) {
+        let money = $(element).val().toString().replaceAll(",", "");
+        $(element).val(money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
+    else{
+        $(element).val($(element).data("value").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
 }

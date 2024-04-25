@@ -95,7 +95,7 @@
                     <div id="size_container">
                         @foreach($sizes as $size)
                             @if ($size['id_color'] == $colors[0]['id'])
-                                <p>{{$size['name']}}</p>
+                                <p onclick="ChooseSize(this)">{{$size['name']}}</p>
                             @endif
                         @endforeach
                     </div>
