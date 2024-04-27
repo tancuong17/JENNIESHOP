@@ -47,7 +47,7 @@
                         <th style="width: 15%">Trạng thái</th>
                     </tr>
                     @foreach($products as $product)
-                    <tr onclick="LinkProduct('{{$product['slug']}}')">
+                    <tr onclick="LinkProduct('{{$product['id']}}')">
                         <td style="text-align: center">{{ (Request::get('page') - 1) * $quantity + $loop->index + 1}}</td>
                         <td>{{$product['sku_code']}}</td>
                         <td>{{$product['name']}}</td>

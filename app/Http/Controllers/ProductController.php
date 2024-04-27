@@ -44,20 +44,24 @@ class ProductController extends Controller
 
     public function update(Request $request){
         try {
-            Product::whereRaw("id = $request->idProduct")->update(["$request->column" => $request->value]);
+            $condition = json_decode($request->data);
+            if($request->column = "name")
+                Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->name, "slug" => $condition[0]->slug]);
+            else
+                Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->sku_code]);
             return json_encode("Cập nhật thành công");
         } catch (\Throwable $th) {
             return json_encode($th);
         }
     }
 
-    public function get($slug){
+    public function get($column, $value){
         try {
             $priceController = new PriceController();
             $imageController = new ImageController();
             $colorController = new ColorController();
             $sizeController = new SizeController();
-            $product = Product::where('slug', $slug)->first();
+            $product = Product::where($column, $value)->first();
             $images = $imageController->get($product->id);
             $prices = $priceController->get($product->id);
             $colors = $colorController->get($product->id);
@@ -66,7 +70,6 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return json_encode($th);
         }
-        
     }
 
     public function gets($quantity){

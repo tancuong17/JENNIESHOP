@@ -9,6 +9,9 @@
         @elseif(str_contains(Request::path(), 'manage/detailproduct'))
             <li>Sản phẩm</li>
             <li>Chi tiết</li>
+        @elseif(str_contains(Request::path(), 'manage/addtypeproduct'))
+            <li>Loại sản phẩm</li>
+            <li>Thêm mới</li>
         @endif
     </ul>
     <div id="user_container">

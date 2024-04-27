@@ -29,9 +29,13 @@
         $quantity = 2;
         return view('manage.addproduct', compact('quantity'));
     });
-    Route::get('manage/detailproduct/{slug}', function ($slug) {
+    Route::get('manage/addtypeproduct', function () {
+        $quantity = 2;
+        return view('manage.addtypeproduct', compact('quantity'));
+    });
+    Route::get('manage/detailproduct/{id}', function ($id) {
         $productController = new ProductController();
-        $data = $productController->get($slug);
+        $data = $productController->get("id", $id);
         $product = $data["product"];
         $images = $data["images"];
         $colors = $data["colors"];
@@ -51,7 +55,7 @@
     });
     Route::get('product/{slug}', function ($slug) {
         $productController = new ProductController();
-        $data = $productController->get($slug);
+        $data = $productController->get("slug", $slug);
         $product = $data["product"];
         $images = $data["images"];
         $colors = $data["colors"];

@@ -1,5 +1,22 @@
 CKEDITOR.replace('detail', {height: 500});
 
+function toSlug(str) {
+	str = str.toLowerCase();     
+	str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+	str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+	str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+	str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+	str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+	str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+	str = str.replace(/(đ)/g, 'd');
+	str = str.replace(/([^0-9a-z-\s])/g, '');
+	str = str.replace(/(\s+)/g, '-');
+	str = str.replace(/-+/g, '-');
+	str = str.replace(/^-+/g, '');
+	str = str.replace(/-+$/g, '');
+	return str;
+}
+
 function DeleteImageProduct(e, idImage) {
     $(e).parent().remove();
     imagesRemoveProduct.push(idImage);
@@ -252,10 +269,17 @@ function UpdateImage(idProduct) {
 }
 
 function UpdateProduct(idProduct, column, e) {
+    let data = new Array();
+    if(column == "name"){
+        data.push({"slug": toSlug($(e).parent().find("input").eq(0).val()), "name": $(e).parent().find("input").eq(0).val()});
+    }
+    else{
+        data.push({"sku_code": $(e).parent().find("input").eq(0).val()});
+    }
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/updateproduct",
-        data: {"idProduct": idProduct, "column": column, "value": $(e).parent().find("input").val()},
+        data: {"idProduct": idProduct, "column": column, "data": JSON.stringify(data)},
         dataType: "json",
         success: function (response) {
             alert(response);
