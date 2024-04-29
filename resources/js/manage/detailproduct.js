@@ -367,3 +367,29 @@ function FormatMoney(element, event) {
         $(element).val($(element).data("value").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
 }
+
+function ChooseTypeProduct(e) {
+    if($(e).css("background-color") == "rgb(245, 245, 245)")
+        $(e).css("background-color", "white");
+    else
+        $(e).css("background-color", "whitesmoke");
+}
+
+function UpdateTypeProduct(idProduct) {
+    let typeProducts = new Array();
+    let typeProductClass = document.getElementsByClassName("type-product");
+    for (let k = 0; k < typeProductClass.length; k++) {
+        if($(typeProductClass[k]).css("background-color") == "rgb(245, 245, 245)"){
+           typeProducts.push($(typeProductClass[k]).data("id"));
+        }
+    }
+    $.ajax({
+        type: "post",
+        url: "http://localhost/shop/api/updatetypeproductdetail",
+        data: {idProduct: idProduct, typeProducts: JSON.stringify(typeProducts)},
+        dataType: "json",
+        success: function (response) {
+            alert(response);
+        }
+    });
+}

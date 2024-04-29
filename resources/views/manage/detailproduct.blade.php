@@ -20,7 +20,7 @@
     <div id="main-container">
         @include('manage.header')
         <div id="add_product_container">
-            <p>Ảnh sản phẩm</p>
+            <p class="title">Ảnh sản phẩm</p>
             <div id="images_container">
                 @foreach($images as $image)
                     <div class="image-product-upload-file-conatainer" id="images" for="image-upload-{{$image['id']}}">
@@ -36,17 +36,17 @@
             <div class="button-update-container">
                 <button class="button-w100" onclick="UpdateImage({{$product['id']}})">Cập nhật</button>
             </div>
-            <p>Mã SKU</p>
+            <p class="title">Mã SKU</p>
             <div class="input-update-container">
                 <input value="{{$product['sku_code']}}" type="text" class="input_info" placeholder="..." id="sku">
                 <button class="button" onclick="UpdateProduct({{$product['id']}}, 'sku_code', this)">Cập nhật</button>
             </div>
-            <p>Tên</p>
+            <p class="title">Tên</p>
             <div class="input-update-container">
                 <input value="{{$product['name']}}" type="text" class="input_info" placeholder="..." id="name">
                 <button class="button" onclick="UpdateProduct({{$product['id']}}, 'name', this)">Cập nhật</button>
             </div>
-            <p>Giá</p>
+            <p class="title">Giá</p>
             <div class="input-update-container">
                 @foreach($prices as $price)
                     @if ($price['type_price'] == 1)
@@ -55,11 +55,24 @@
                 @endforeach
                 <button class="button" onclick="UpdatePrice({{$product['id']}})">Cập nhật</button>
             </div>
-            <p>Giá khuyến mãi</p>
+            <p class="title">Loại sản phẩm</p>
+            <div id="type-product-container">
+                @foreach($typeproducts as $typeproduct)
+                    <p class="type-product 
+                        @foreach($types as $type)
+                            @if ($typeproduct["id"] == $type["id_type"])type-product-choosed @endif
+                        @endforeach
+                    " onclick="ChooseTypeProduct(this)" data-id="{{$typeproduct['id']}}">{{$typeproduct['name']}}</p> 
+                @endforeach
+            </div>
+            <div class="button-update-container">
+                <button class="button-w100" onclick="UpdateTypeProduct({{$product['id']}})">Cập nhật</button>
+            </div>
+            <p class="title">Giá khuyến mãi</p>
             @foreach($prices as $price)
                 @if ($price['type_price'] == 0)
                     <input onkeyup="FormatMoney(this, event)" data-value="{{$price['price']}}" value="{{number_format($price['price'])}}" type="text" class="input_info" placeholder="..." id="price-promotion">
-                    <p>Thời gian khuyến mãi</p>
+                    <p class="title">Thời gian khuyến mãi</p>
                     <div class="input-update-container">
                         <input value="{{date('Y-m-d', strtotime($price['created_at']))}}" type="date" class="input_info" placeholder="..." id="start-date-price-promotion">
                         <span>-</span>
@@ -69,7 +82,7 @@
             @endforeach
             @if (count($prices) == 1)
                 <input type="text" class="input_info" placeholder="..." id="price-promotion">
-                <p>Thời gian khuyến mãi</p>
+                <p class="title">Thời gian khuyến mãi</p>
                 <div class="input-update-container">
                     <input type="date" class="input_info" placeholder="..." id="start-date-price-promotion">
                     <span>-</span>
@@ -79,7 +92,7 @@
             <div class="button-update-container">
                 <button class="button-w100" onclick="PricePromotion({{$product['id']}})">Cập nhật</button>
             </div>
-            <p>Màu sắc</p>
+            <p class="title">Màu sắc</p>
             <div id="color_container">
                 @foreach($colors as $color)
                     <div class="color" data-id="{{$color['id']}}">
@@ -93,9 +106,9 @@
                             @foreach($sizes as $size)
                                 @if ($size['id_color'] == $color['id'])
                                     <div class="color_input" data-id="{{$size['id']}}">
-                                        <p>Kích thước</p>
+                                        <p class="title">Kích thước</p>
                                         <input value="{{$size['name']}}" data-value="{{$size['name']}}" type="text" placeholder="..." class="name_size">
-                                        <p>Số lượng</p>
+                                        <p class="title">Số lượng</p>
                                         <input value="{{$size['quantity']}}" data-value="{{$size['quantity']}}" type="text" placeholder="..." class="quantity_size">
                                         <button class="button-w100" onclick="UpdateSize(this, {{$size['id']}})">Cập nhật</button>
                                         <?xml version="1.0" encoding="UTF-8"?><svg class="icon-delete" onclick="DeleteSizeProduct(this, {{$size['id']}})" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000" stroke-width="1.5"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM9.70164 8.64124C9.40875 8.34835 8.93388 8.34835 8.64098 8.64124C8.34809 8.93414 8.34809 9.40901 8.64098 9.7019L10.9391 12L8.64098 14.2981C8.34809 14.591 8.34809 15.0659 8.64098 15.3588C8.93388 15.6517 9.40875 15.6517 9.70164 15.3588L11.9997 13.0607L14.2978 15.3588C14.5907 15.6517 15.0656 15.6517 15.3585 15.3588C15.6514 15.0659 15.6514 14.591 15.3585 14.2981L13.0604 12L15.3585 9.7019C15.6514 9.40901 15.6514 8.93414 15.3585 8.64124C15.0656 8.34835 14.5907 8.34835 14.2978 8.64124L11.9997 10.9393L9.70164 8.64124Z" fill="#000000"></path></svg>
@@ -114,7 +127,7 @@
                 </div>
             </div>
             <div class="detail-update-container">
-                <p>Chi tiết</p>
+                <p class="title">Chi tiết</p>
                 <button class="button" onclick="UpdateDetailProduct({{$product['id']}})">Cập nhật</button>
             </div>
             <textarea id="detail" style="height: 500px">

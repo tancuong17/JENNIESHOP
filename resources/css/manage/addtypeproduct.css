@@ -21,7 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px dashed lightgray;
+    border: 1px dashed whitesmoke;
 }
 
 #image-type-product{
@@ -38,13 +38,13 @@
 #info-type-product input{
     padding: 0.5rem;
     outline: none;
-    border: 1px solid lightgray;
+    border: 1px solid whitesmoke;
 }
 
 #info-type-product textarea{
     height: 4.2rem;
     outline: none;
-    border: 1px solid lightgray;
+    border: 1px solid whitesmoke;
     padding: 0.5rem;
     resize: none;
 }
@@ -55,7 +55,7 @@
     width: 100%;
     min-height: 10rem;
     height: auto;
-    border: 1px dashed lightgray;
+    border: 1px dashed whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +71,7 @@
     margin: 0.5rem 0;
     padding: 0.5rem;
     outline: none;
-    border: 1px solid lightgray;
+    border: 1px solid whitesmoke;
 }
 
 .image-banner-type-product-upload {

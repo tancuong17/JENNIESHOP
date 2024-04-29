@@ -32,31 +32,13 @@
         <p>BẠN ĐANG TÌM KIẾM?</p>
     </div>
     <div id="catelory_container">
-        <div>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/ao_khoac.png" alt="catelory">
-            <p>ÁO KHOÁC</p>
-            <p>Áo khoác thời trang nam/nữ</p>
-        </div>
-        <div>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/do_nam.png" alt="catelory">
-            <p>ĐỒ NAM</p>
-            <p>Áo thun, sơ mi, quần dài, sort,...</p>
-        </div>
-        <div>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/do_nu.png" alt="catelory">
-            <p>ĐỒ NỮ</p>
-            <p>Áo quần, chân váy, đầm, yếm,...</p>
-        </div>
-        <div>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/do_unisex.png" alt="catelory">
-            <p>ĐỒ UNISEX</p>
-            <p>Áo thun, sơ mi, áo khoác UNISEX</p>
-        </div>
-        <div>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/phu_kien.png" alt="catelory">
-            <p>PHỤ KIỆN</p>
-            <p>Balo, túi xách, nón, thắt lưng, ví,..</p>
-        </div>
+        @foreach($typeproducts as $typeproduct)
+            <div>
+                <img class="catelory_image" src="{{env('URL_IMAGE')}}{{$typeproduct['icon']}}" alt="catelory">
+                <p>{{$typeproduct['name']}}</p>
+                <p>{{$typeproduct['detail']}}</p>
+            </div>       
+        @endforeach
         <div>
             <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/top.png" alt="catelory">
             <p>#JENNIE</p>

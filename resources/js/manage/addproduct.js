@@ -101,9 +101,11 @@ function AddProduct() {
     let priceProduct = Number($("#price").val().replaceAll(",", ""));
     let detailProduct = CKEDITOR.instances['detail'].getData();
     let colors = new Array();
+    let typeProducts = new Array();
     let imageProductUploadFiles = document.getElementsByClassName("image-product-upload-file");
     let imageColorUploadFiles = document.getElementsByClassName("image-color-upload-file");
     let nameColorClass = document.getElementsByClassName("name-color");
+    let typeProductClass = document.getElementsByClassName("type-product");
     for (let i = 0; i < imageProductUploadFiles.length; i++) {
         if(imageProductUploadFiles[i].value != ""){
             data.append("productPhoto" + quantityProductPhoto, $("#image-upload-" + quantityProductPhoto)[0].files[0]);
@@ -123,6 +125,11 @@ function AddProduct() {
             quantityColorPhoto += 1;
         }
     }
+    for (let k = 0; k < typeProductClass.length; k++) {
+        if($(typeProductClass[k]).css("background-color") == "rgb(245, 245, 245)"){
+           typeProducts.push($(typeProductClass[k]).attr("data-id"));
+        }
+    }
     data.append("quantityProductPhoto", quantityProductPhoto);
     data.append("nameProduct", nameProduct);
     data.append("slugProduct", toSlug(nameProduct));
@@ -130,6 +137,7 @@ function AddProduct() {
     data.append("priceProduct", priceProduct);
     data.append("detailProduct", detailProduct);
     data.append("colors", JSON.stringify(colors.reverse()));
+    data.append("typeProducts", JSON.stringify(typeProducts));
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/addproduct",
@@ -152,4 +160,11 @@ function FormatMoney(element, event) {
     else{
         $(element).val($(element).data("value").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
+}
+
+function ChooseTypeProduct(e) {
+    if($(e).css("background-color") == "rgb(245, 245, 245)")
+        $(e).css("background-color", "white");
+    else
+        $(e).css("background-color", "whitesmoke");
 }

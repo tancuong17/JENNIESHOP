@@ -1,6 +1,7 @@
 <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\ProductController;
+    use App\Http\Controllers\TypeProductController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -13,11 +14,13 @@
     */
     Route::get('/', function () {
         $productController = new ProductController();
+        $typeProductController = new TypeProductController();
+        $typeproducts = $typeProductController->getByCondition("type_product_parent", 0);
         $data = $productController->gets(8);
         $products = $data["products"];
         $images = $data["images"];
         $prices = $data["prices"];
-        return view('index', compact('products', 'images', 'prices'));
+        return view('index', compact('products', 'images', 'prices', 'typeproducts'));
     });
     Route::get('manage/login', function () {
         return view('manage.login');
@@ -26,14 +29,20 @@
         return view('manage.dashboard');
     });
     Route::get('manage/addproduct', function () {
+        $typeProductController = new TypeProductController();
+        $typeproducts = $typeProductController->getAll();
         $quantity = 2;
-        return view('manage.addproduct', compact('quantity'));
+        return view('manage.addproduct', compact('quantity', 'typeproducts'));
     });
     Route::get('manage/addtypeproduct', function () {
+        $typeProductController = new TypeProductController();
+        $typeproducts = $typeProductController->getAll();
         $quantity = 2;
-        return view('manage.addtypeproduct', compact('quantity'));
+        return view('manage.addtypeproduct', compact('typeproducts', 'quantity'));
     });
     Route::get('manage/detailproduct/{id}', function ($id) {
+        $typeProductController = new TypeProductController();
+        $typeproducts = $typeProductController->getAll();
         $productController = new ProductController();
         $data = $productController->get("id", $id);
         $product = $data["product"];
@@ -41,8 +50,9 @@
         $colors = $data["colors"];
         $sizes = $data["sizes"];
         $prices = $data["prices"];
+        $types = $data["types"];
         $quantity = 2;
-        return view('manage.detailproduct',  compact('product', 'images', 'colors', 'sizes', 'prices', 'quantity'));
+        return view('manage.detailproduct',  compact('product', 'images', 'colors', 'sizes', 'prices', 'quantity', 'typeproducts', 'types'));
     });
     Route::get('manage/listproduct/{quantity}', function ($quantity) {
         $productController = new ProductController();

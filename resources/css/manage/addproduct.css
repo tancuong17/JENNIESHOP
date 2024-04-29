@@ -7,7 +7,7 @@
     padding-right: 0.5rem;
 }
 
-#add_product_container p {
+.title {
     margin: 0.5rem 0;
 }
 
@@ -216,4 +216,26 @@
 
 .image-product-upload-file-conatainer{
     position: relative;
+}
+
+#type-product-container{
+    width: 100%;
+    height: 10rem;
+    overflow-y: auto;
+    border: 1px solid whitesmoke;
+    padding-bottom: 0.5rem;
+}
+
+.type-product{
+    width: fit-content;
+    padding: 1rem;
+    float: left;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    border: 1px solid whitesmoke;
+}
+
+.type-product-choosed{
+    background-color: whitesmoke;
 }

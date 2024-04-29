@@ -18,9 +18,10 @@
         <div id="add_type_product_container">
             <p>Loại sản phẩm cấp trên</p>
             <select id="type-product-choose">
-                <option>Không</option>
-                <option>Áo Nam</option>
-                <option>Áo Nữ</option>
+                <option value="0">Không</option>
+                @foreach($typeproducts as $typeproduct)
+                    <option value="{{$typeproduct['id']}}">{{$typeproduct['name']}}</option>
+                @endforeach
             </select>
             <p>Ảnh</p>
             <label id="image-banner-type-product-container" for="image-banner-type-product">
@@ -40,11 +41,11 @@
             </div>
             <div id="info-type-product">
                 <p>Tên</p>
-                <input type="text" placeholder="...">
+                <input type="text" placeholder="..." id="name">
                 <p>Mô tả</p>
-                <textarea name="" id="" cols="30" rows="10" placeholder="..."></textarea>
+                <textarea name="" id="detail" cols="30" rows="10" placeholder="..."></textarea>
             </div>
-            <button id="add_product_btn">Hoàn tất</button>
+            <button id="add_product_btn" onclick="AddTypeProduct()">Hoàn tất</button>
         </div>
     </div>
 </body>

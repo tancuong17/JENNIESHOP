@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TypeProductController;
+use App\Http\Controllers\TypeProductDetailController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ImageController;
@@ -28,10 +30,26 @@ Route::post('addproduct', [ProductController::class, 'add']);
 
 Route::post('updateproduct', [ProductController::class, 'update']);
 
+Route::post('updatetypeproductdetail', function (Request $request){
+    $typeProductDetailController = new TypeProductDetailController();
+    $result = $typeProductDetailController->update($request);
+    return json_encode($result);
+});
+
 Route::post('deleteproduct', function (Request $request){
     $productController = new ProductController();
     $result = $productController->delete($request->idProduct);
     return json_encode($result);
+});
+
+Route::post('addtypeproduct', function (Request $request){
+    try {
+        $typeProductController = new TypeProductController();
+        $typeProductController->add($request);
+        return json_encode("Thêm thành công");
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
 });
 
 Route::get('getsize/{idColor}', function ($idColor){

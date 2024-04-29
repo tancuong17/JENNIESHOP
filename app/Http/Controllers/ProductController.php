@@ -9,6 +9,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\TypeProductDetailController;
 
 class ProductController extends Controller
 {
@@ -25,6 +26,7 @@ class ProductController extends Controller
             $priceController = new PriceController();
             $imageController = new ImageController();
             $colorController = new ColorController();
+            $typeProductDetailController = new TypeProductDetailController();
             $product->name = $request->nameProduct;
             $product->sku_code = $request->skuProduct;
             $product->slug = $this->convertData($request->slugProduct);
@@ -33,6 +35,7 @@ class ProductController extends Controller
             $product->creator = 1;
             $product->updater = 1;
             $product->save();
+            $typeProductDetailController->add($request, $product->id);
             $colorController->add($request, $product->id);
             $imageController->add($request, $product->id);
             $priceController->add(array("id_product" => $product->id, "price" => $request->priceProduct, "type_price" => 1, "creator" => 1));
@@ -61,12 +64,14 @@ class ProductController extends Controller
             $imageController = new ImageController();
             $colorController = new ColorController();
             $sizeController = new SizeController();
+            $typeProductDetailController = new TypeProductDetailController();
             $product = Product::where($column, $value)->first();
             $images = $imageController->get($product->id);
             $prices = $priceController->get($product->id);
             $colors = $colorController->get($product->id);
             $sizes = $sizeController->getByIdProduct($product->id);
-            return ["product" => $product, "images" => $images, "colors" => $colors, "sizes" => $sizes, "prices" => $prices];
+            $types = $typeProductDetailController->getByIdProduct($product->id);
+            return ["product" => $product, "images" => $images, "colors" => $colors, "sizes" => $sizes, "prices" => $prices, "types" => $types];
         } catch (\Throwable $th) {
             return json_encode($th);
         }
