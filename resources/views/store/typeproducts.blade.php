@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
+    <title>{{$typeProduct[0]['name']}}</title>
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -17,40 +17,18 @@
 <body>
     @include('store.header')
     @include('store.menu')
-    <div class="swiper" id="banner_slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="{{env('URL_IMAGE')}}/images/slider_1.jpeg" alt="slider">
-          </div>
-          <div class="swiper-slide">
-            <img src="{{env('URL_IMAGE')}}/images/slider_2.jpg" alt="slider">
-          </div>
-        </div>
-        <div class="swiper-scrollbar"></div>
+    <div style="margin-top: 6rem; margin-bottom: 2rem">
+        <img style="width: 100%; object-fit: cover" src="{{env('URL_IMAGE')}}{{$typeProduct[0]['image']}}" alt="banner">
     </div>
-    <div class="title_text line text_title_center">
-        <p>BẠN ĐANG TÌM KIẾM?</p>
-    </div>
-    <div id="catelory_container">
-        @foreach($typeproducts as $typeproduct)
-            <a href="./loai-san-pham/{{ $typeproduct['slug'] }}/{{ $typeproduct['id'] }}?page=1">
-                <img class="catelory_image" src="{{env('URL_IMAGE')}}{{$typeproduct['icon']}}" alt="catelory">
-                <p>{{$typeproduct['name']}}</p>
-                <p>{{$typeproduct['detail']}}</p>
-            </a>       
-        @endforeach
-        <a>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/top.png" alt="catelory">
-            <p>#JENNIE</p>
-            <p>Sản phẩm được JENNIE đề xuất</p>
-        </a>
-    </div>
-    <div class="title_text text_title_left">
-        <p>SẢN PHẨM NỔI BẬT</p>
+    <div class="text_title_left">
+        <ul class="navigation">
+            <li>Trang chủ</li>
+            <li>{{$typeProduct[0]['name']}}</li>
+        </ul>
     </div>
     <div class="product_container">
         @foreach($products as $product)
-            <a class="product" href="./chi-tiet-san-pham/{{ $product['slug'] }}">
+            <a class="product" href="http://localhost/shop/chi-tiet-san-pham/{{ $product['slug'] }}">
                 <img src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
                 <h1>{{ $product['name'] }}</h1>
                 <div class="product_bottom">
@@ -74,28 +52,8 @@
             </a>
         @endforeach
     </div>
-    <div class="title_text text_title_left">
-        <p>BỘ SƯU TẬP</p>
-    </div>
-    <div id="collection_container">
-        <div class="collection">
-            <img src="{{env('URL_IMAGE')}}/images/bo_suu_tap.jpeg" alt="collection">
-            <div class="collection_text">
-                <p>ENOUGHIMS - "BIẾT ĐỦ"</p>
-            </div>
-        </div>
-        <div class="collection">
-            <img src="{{env('URL_IMAGE')}}/images/bo_suu_tam_2.jpg" alt="collection">
-            <div class="collection_text">
-                <p>DOPAMINE - "MÀU SẮC CHỮA LÀNH"</p>
-            </div>
-        </div>
-        <div class="collection">
-            <img src="{{env('URL_IMAGE')}}/images/bo_suu_tam_3.jpg" alt="collection">
-            <div class="collection_text">
-                <p>RETRO DENIM IS FUTURE</p>
-            </div>
-        </div>
+    <div class="paginator-container">
+        {!! $typeProductDetails->links('store.paginator', ['quantity' => 2]) !!}
     </div>
     @include('store.footer')
 </body>

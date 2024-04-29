@@ -108,7 +108,7 @@ a{
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 }
 
-#catelory_container div{
+#catelory_container a{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,20 +120,20 @@ a{
   color: #003644;
 }
 
-#catelory_container div:hover{
+#catelory_container a:hover{
   background: #003644;
   color: #e5ebec;
 }
 
-#catelory_container div:hover .catelory_image{
+#catelory_container a:hover .catelory_image{
   filter: invert(96%) sepia(6%) saturate(130%) hue-rotate(141deg) brightness(96%) contrast(98%);
 }
 
-#catelory_container div p:nth-child(2){
+#catelory_container a p:nth-child(2){
   font-weight: 700;
 }
 
-#catelory_container div p:nth-child(3){
+#catelory_container a p:nth-child(3){
   font-weight: 100;
   font-size: 14px;
   text-align: center;
@@ -245,4 +245,32 @@ a{
   font-weight: 500;
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pagination-container{
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+  border: 1px solid lightgray;
+  font-size: 12px;
+  border-radius: 50%;
+}
+
+.pagination-active{
+  background-color: lightgray;
+}
+
+.paginator-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 }

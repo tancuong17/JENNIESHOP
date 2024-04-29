@@ -11,6 +11,7 @@ class TypeProductController extends Controller
         try {
             $typeProduct = new TypeProduct();
             $typeProduct->name = $request->name;
+            $typeProduct->slug = $request->slug;
             $typeProduct->detail = $request->detail;
             $typeProduct->image = $request->file('image')->store('images');
             $typeProduct->icon = $request->file('icon')->store('images');
@@ -27,6 +28,15 @@ class TypeProductController extends Controller
     public function getAll(){
         try {
             $typeproducts = TypeProduct::get();
+            return $typeproducts;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
+
+    public function getById($id){
+        try {
+            $typeproducts = TypeProduct::where("id", $id)->get();
             return $typeproducts;
         } catch (\Throwable $th) {
             return json_encode($th);

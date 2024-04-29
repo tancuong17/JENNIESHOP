@@ -2,6 +2,7 @@
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\ProductController;
     use App\Http\Controllers\TypeProductController;
+    use App\Http\Controllers\TypeProductDetailController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -63,7 +64,7 @@
         $quantity = $quantity;
         return view('manage.listproduct', compact('products', 'images', 'quantity', 'prices'));
     });
-    Route::get('product/{slug}', function ($slug) {
+    Route::get('chi-tiet-san-pham/{slug}', function ($slug) {
         $productController = new ProductController();
         $data = $productController->get("slug", $slug);
         $product = $data["product"];
@@ -72,5 +73,15 @@
         $sizes = $data["sizes"];
         $prices = $data["prices"];
         return view('store.product', compact('product', 'images', 'colors', 'sizes', 'prices'));
+    });
+    Route::get('loai-san-pham/{slug}/{id}', function ($slug, $id) {
+        $typeProductDetailController = new TypeProductDetailController();
+        $data = $typeProductDetailController->getProducts($id);
+        $products = $data["products"];
+        $images = $data["images"];
+        $prices = $data["prices"];
+        $typeProductDetails = $data["typeProductDetails"];
+        $typeProduct = $data["typeProduct"];
+        return view('store.typeproducts', compact('typeProductDetails', 'products', 'images', 'prices', 'typeProduct'));
     });
 ?>
