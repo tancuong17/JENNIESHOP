@@ -47,11 +47,16 @@ class ProductController extends Controller
 
     public function update(Request $request){
         try {
-            $condition = json_decode($request->data);
-            if($request->column = "name")
+            if($request->column == "name"){
+                $condition = json_decode($request->data);
                 Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->name, "slug" => $condition[0]->slug]);
-            else
+            }
+            if($request->column == "sku_code"){
+                $condition = json_decode($request->data);
                 Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->sku_code]);
+            }
+            if($request->column == "detail")
+                Product::whereRaw("id = $request->idProduct")->update([$request->column => $request->value]);
             return json_encode("Cập nhật thành công");
         } catch (\Throwable $th) {
             return json_encode($th);
@@ -83,7 +88,7 @@ class ProductController extends Controller
             $prices = array();
             $imageController = new ImageController();
             $priceController = new PriceController();
-            $products = Product::paginate($quantity);
+            $products = Product::orderBy('id', 'desc')->paginate($quantity);
             foreach ($products as $product) {
                 array_push($images, $imageController->get($product->id));
                 array_push($prices, $priceController->get($product->id));

@@ -52,6 +52,16 @@ Route::post('addtypeproduct', function (Request $request){
     }
 });
 
+Route::post('updatetypeproduct', function (Request $request){
+    try {
+        $typeProductController = new TypeProductController();
+        $result = $typeProductController->update($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
 Route::get('getsize/{idColor}', function ($idColor){
     $sizeController = new SizeController();
     return json_encode($sizeController->getByIdColor($idColor));

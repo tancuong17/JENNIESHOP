@@ -12,6 +12,12 @@
         @elseif(str_contains(Request::path(), 'manage/addtypeproduct'))
             <li>Loại sản phẩm</li>
             <li>Thêm mới</li>
+        @elseif(str_contains(Request::path(), 'manage/listtypeproduct'))
+            <li>Loại sản phẩm</li>
+            <li>Danh sách</li>
+        @elseif(str_contains(Request::path(), 'manage/detailtypeproduct'))
+            <li>Loại sản phẩm</li>
+            <li>Chi tiết loại sản phẩm</li>
         @endif
     </ul>
     <div id="user_container">

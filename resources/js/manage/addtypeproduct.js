@@ -57,6 +57,33 @@ function AddTypeProduct() {
         dataType: "json",
         success: function (response) {
             alert(response);
+            window.location.href = "http://localhost/shop/manage/listtypeproduct/2?page=1";
+        }
+    });
+}
+
+function UpdateTypeProduct(idTypeProduct) {
+    let data = new FormData();
+    data.append("idTypeProduct", idTypeProduct);
+    data.append("name", $("#name").val());
+    data.append("slug", toSlug($("#name").val()));
+    data.append("detail", $("#detail").val());
+    data.append("typeProductParent", $("#type-product-choose").val());
+    if($("#image-banner-type-product").val() != "")
+        data.append("image", $("#image-banner-type-product")[0].files[0]);
+    if($("#image-type-product").val() != "")
+        data.append("icon", $("#image-type-product")[0].files[0]);
+    $.ajax({
+        type: "post",
+        url: "http://localhost/shop/api/updatetypeproduct",
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        dataType: "json",
+        success: function (response) {
+            alert(response);
+            window.location.reload();
         }
     });
 }

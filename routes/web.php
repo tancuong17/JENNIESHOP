@@ -41,6 +41,13 @@
         $quantity = 2;
         return view('manage.addtypeproduct', compact('typeproducts', 'quantity'));
     });
+    Route::get('manage/detailtypeproduct/{id}', function ($id) {
+        $typeProductController = new TypeProductController();
+        $typeproductdetail = $typeProductController->getById($id);
+        $typeproducts = $typeProductController->getAll();
+        $quantity = 2;
+        return view('manage.detailtypeproduct', compact('typeproductdetail', 'quantity', 'typeproducts'));
+    });
     Route::get('manage/detailproduct/{id}', function ($id) {
         $typeProductController = new TypeProductController();
         $typeproducts = $typeProductController->getAll();
@@ -63,6 +70,12 @@
         $prices = $data["prices"];
         $quantity = $quantity;
         return view('manage.listproduct', compact('products', 'images', 'quantity', 'prices'));
+    });
+    Route::get('manage/listtypeproduct/{quantity}', function ($quantity) {
+        $typeProductController = new TypeProductController();
+        $typeproducts = $typeProductController->getAllWithPaginate($quantity);
+        $quantity = $quantity;
+        return view('manage.listtypeproduct', compact('typeproducts', 'quantity'));
     });
     Route::get('chi-tiet-san-pham/{slug}', function ($slug) {
         $productController = new ProductController();

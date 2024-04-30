@@ -17,12 +17,12 @@
                 </div>
                 <?xml version="1.0" encoding="UTF-8"?><svg class="chervon chervon_active" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 15L12 9L18 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
-            <div class="sub_menu_container @if (Request::path() == 'manage/addtypeproduct') sub_menu_active @endif">
+            <div class="sub_menu_container @if (Request::path() == 'manage/addtypeproduct' || str_contains(Request::path(), 'manage/listtypeproduct') || str_contains(Request::path(), 'manage/detailtypeproduct')) sub_menu_active @endif">
                 <a href="http://localhost/shop/manage/addtypeproduct" class="sub_menu_button @if (Request::path() == 'manage/addtypeproduct') menu_button_active @endif">
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p>Thêm</p>
                 </a>
-                <a href="http://localhost/shop/manage/listproduct/{{ $quantity }}?page=1" class="sub_menu_button">
+                <a href="http://localhost/shop/manage/listtypeproduct/{{ $quantity }}?page=1" class="sub_menu_button @if (str_contains(Request::path(), 'manage/listtypeproduct') || str_contains(Request::path(), 'manage/detailtypeproduct')) menu_button_active @endif">
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 12H7.5H12H16.5H21M3 12V16.5M3 12V7.5M21 12V16.5M21 12V7.5M3 16.5V20.4C3 20.7314 3.26863 21 3.6 21H7.5H12H16.5H20.4C20.7314 21 21 20.7314 21 20.4V16.5M3 16.5H7.5H12H16.5H21M21 7.5V3.6C21 3.26863 20.7314 3 20.4 3H16.5H12H7.5H3.6C3.26863 3 3 3.26863 3 3.6V7.5M21 7.5H16.5H12H7.5H3" stroke="#000000" stroke-width="1.5"></path></svg>
                     <p>Danh sách</p>
                 </a>

@@ -42,7 +42,7 @@ class TypeProductDetailController extends Controller
     }
 
     public function getProducts($id){
-        $typeProductDetails = TypeProductDetail::where('id_type', $id)->paginate(2);
+        $typeProductDetails = TypeProductDetail::where('id_type', $id)->orderBy('id', 'desc')->paginate(2);
         $products = array();
         $images = array();
         $prices = array();
