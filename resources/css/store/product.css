@@ -2,17 +2,6 @@
     margin: 8rem 4rem 2rem;
 }
 
-.navigation {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.navigation li:not(:last-child):after {
-    content: "/";
-    margin: 0 15px;
-}
-
 #product_info_container{
     display: flex;
     gap: 2rem;

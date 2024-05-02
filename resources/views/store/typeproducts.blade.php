@@ -10,15 +10,14 @@
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/header.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/footer.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/index.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('resources/css/store/product.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
 </head>
 <body>
     @include('store.header')
     @include('store.menu')
-    <div style="margin-top: 6rem; margin-bottom: 2rem">
-        <img style="width: 100%; object-fit: cover" src="{{env('URL_IMAGE')}}{{$typeProduct[0]['image']}}" alt="banner">
+    <div class="image-banner">
+        <img src="{{env('URL_IMAGE')}}{{$typeProduct[0]['image']}}" alt="banner">
     </div>
     <div class="text_title_left">
         <ul class="navigation">
@@ -26,6 +25,13 @@
             <li>{{$typeProduct[0]['name']}}</li>
         </ul>
     </div>
+    @if(count($typeProductParents) > 0)
+    <div id="type-product-container">
+        @foreach($typeProductParents as $typeProductParent)
+            <a href="http://localhost/shop/loai-san-pham/{{$typeProductParent['slug']}}/{{$typeProductParent['id']}}?page=1" class="type-product">{{$typeProductParent['name']}}</a>
+        @endforeach
+    </div>
+    @endif
     <div class="product_container">
         @foreach($products as $product)
             <a class="product" href="http://localhost/shop/chi-tiet-san-pham/{{ $product['slug'] }}">
@@ -60,5 +66,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{URL::asset('resources/js/store/index.js')}}"></script>
-<script src="{{URL::asset('resources/js/store/product.js')}}"></script>
 </html>

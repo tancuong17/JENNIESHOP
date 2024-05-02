@@ -44,6 +44,9 @@
                 <textarea name="" id="detail" cols="30" rows="10" placeholder="...">{{$typeproductdetail[0]['detail']}}</textarea>
             </div>
             <button id="add_product_btn" onclick="UpdateTypeProduct({{$typeproductdetail[0]['id']}})">Cập nhật</button>
+            <div class="button-container">
+                <button id="remove_product_btn" onclick="DeleteTypeProduct({{$typeproductdetail[0]['id']}})">Xoá</button>
+            </div>
         </div>
     </div>
 </body>

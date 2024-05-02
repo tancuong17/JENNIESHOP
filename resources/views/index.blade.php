@@ -50,9 +50,11 @@
     </div>
     <div class="product_container">
         @foreach($products as $product)
-            <a class="product" href="./chi-tiet-san-pham/{{ $product['slug'] }}">
-                <img src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
-                <h1>{{ $product['name'] }}</h1>
+            <div class="product">
+                <a href="./chi-tiet-san-pham/{{ $product['slug'] }}">
+                    <img src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
+                    <h1>{{ $product['name'] }}</h1>
+                </a>
                 <div class="product_bottom">
                     <div class="price">
                         @foreach($prices[$loop->index] as $price)
@@ -71,7 +73,7 @@
                         <p>Thêm</p>
                     </div>
                 </div>
-            </a>
+            </div>
         @endforeach
     </div>
     <div class="title_text text_title_left">

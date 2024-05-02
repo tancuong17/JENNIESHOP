@@ -87,3 +87,18 @@ function UpdateTypeProduct(idTypeProduct) {
         }
     });
 }
+
+function DeleteTypeProduct(idTypeProduct) {
+    if (confirm("Bạn có thực sự muốn xoá") == true) {
+        $.ajax({
+            type: "post",
+            url: "http://localhost/shop/api/deletetypeproduct",
+            data: {"idTypeProduct": idTypeProduct},
+            dataType: "json",
+            success: function (response) {
+                alert(response);
+                window.location.href = "http://localhost/shop/manage/listtypeproduct/2?page=1";
+            }
+        });
+    }
+}

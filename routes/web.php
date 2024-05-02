@@ -89,12 +89,17 @@
     });
     Route::get('loai-san-pham/{slug}/{id}', function ($slug, $id) {
         $typeProductDetailController = new TypeProductDetailController();
+        $typeProductController = new TypeProductController();
         $data = $typeProductDetailController->getProducts($id);
+        $typeProductParents = $typeProductController->getByTypeProductParent($id);
         $products = $data["products"];
         $images = $data["images"];
         $prices = $data["prices"];
         $typeProductDetails = $data["typeProductDetails"];
         $typeProduct = $data["typeProduct"];
-        return view('store.typeproducts', compact('typeProductDetails', 'products', 'images', 'prices', 'typeProduct'));
+        return view('store.typeproducts', compact('typeProductDetails', 'products', 'images', 'prices', 'typeProduct', 'typeProductParents'));
+    });
+    Route::get('gio-hang', function () {
+        return view('store.cart');
     });
 ?>

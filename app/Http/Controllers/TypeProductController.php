@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TypeProduct;
+use App\Models\TypeProductDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -53,10 +54,29 @@ class TypeProductController extends Controller
         }
     }
 
+    public function getByTypeProductParent($typeProductParent){
+        try {
+            $typeproducts = TypeProduct::where("type_product_parent", $typeProductParent)->get();
+            return $typeproducts;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
+
     public function getByCondition($column, $value){
         try {
             $typeproducts = TypeProduct::where($column, $value)->get();
             return $typeproducts;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
+
+    public function delete(Request $request){
+        try {
+            TypeProductDetail::where("id_type", $request->idTypeProduct)->delete();
+            TypeProduct::where("id", $request->idTypeProduct)->delete();
+            return "Xoá thành công";
         } catch (\Throwable $th) {
             return json_encode($th);
         }

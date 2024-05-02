@@ -148,7 +148,7 @@ function AddProduct() {
         dataType: "json",
         success: function (response) {
             alert(response);
-            //window.location.href = "http://localhost/shop/manage/listproduct/2?page=1";
+            window.location.href = "http://localhost/shop/manage/listproduct/2?page=1";
         }
     });
 }

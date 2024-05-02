@@ -52,6 +52,16 @@ Route::post('addtypeproduct', function (Request $request){
     }
 });
 
+Route::post('deletetypeproduct', function (Request $request){
+    try {
+        $typeProductController = new TypeProductController();
+        $result = $typeProductController->delete($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
 Route::post('updatetypeproduct', function (Request $request){
     try {
         $typeProductController = new TypeProductController();
