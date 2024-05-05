@@ -29,3 +29,6 @@ $(window).resize(function () {
     if($(window).width() > 1200)
         $("#menu_container_mobile").css("display", "none");
 });
+
+let quantityInCart = (localStorage.getItem("quantityInCart")) ? Number(localStorage.getItem("quantityInCart")) : 0;
+$("#quantity-in-cart").text("(" + quantityInCart + ")");

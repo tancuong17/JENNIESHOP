@@ -86,7 +86,7 @@
                     <p>Màu sắc</p>
                     <div id="color_container">
                         @foreach($colors as $color)
-                            <img data-id={{$color['id']}} src="http://localhost/shop/storage/app/{{$color['url']}}" data-src="{{$color['url']}}"/>
+                            <img data-id={{$color['id']}} @if($loop->index == 0) class="color-choosed" @endif src="http://localhost/shop/storage/app/{{$color['url']}}" data-src="{{$color['url']}}" data-name="{{$color['name']}}"/>
                         @endforeach
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div id="size_container">
                         @foreach($sizes as $size)
                             @if ($size['id_color'] == $colors[0]['id'])
-                                <p onclick="ChooseSize(this)">{{$size['name']}}</p>
+                                <p onclick="ChooseSize(this)" data-name="{{$size['name']}}">{{$size['name']}}</p>
                             @endif
                         @endforeach
                     </div>
@@ -113,7 +113,7 @@
                         <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M8 14L16 14" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 10L10 10" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 18L12 18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 3H6C4.89543 3 4 3.89543 4 5V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V5C20 3.89543 19.1046 3 18 3H14.5M10 3V1M10 3V5" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <p>Mua ngay</p>
                     </div>
-                    <div>
+                    <div onclick="AddToCart({{$product['id']}}, '{{$product['name']}}', {{$prices[0]['price']}})">
                         <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M3 6H22L19 16H6L3 6ZM3 6L2.25 3.5" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.99219 11H11.9922M13.9922 11H11.9922M11.9922 11V9M11.9922 11V13" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 19.5C11 20.3284 10.3284 21 9.5 21C8.67157 21 8 20.3284 8 19.5" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17 19.5C17 20.3284 16.3284 21 15.5 21C14.6716 21 14 20.3284 14 19.5" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <p>Thêm vào giỏ hàng</p>
                     </div>

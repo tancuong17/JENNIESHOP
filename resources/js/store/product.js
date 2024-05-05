@@ -30,7 +30,9 @@ $('#color_container img').on('click', function () {
     let index = 0;
     let src_color_choose = $(this).attr("data-src");
     $('#color_container img').attr("style", "border: 1px solid lightgray");
+    $('#color_container img').removeAttr("class", "color-choosed");
     $(this).attr("style", "border: 1px solid black");
+    $(this).attr("class", "color-choosed");
     $(arraySlide).each(function (i, e) {
         if($(e).attr('data-src') == src_color_choose){
             index = i;
@@ -45,7 +47,7 @@ $('#color_container img').on('click', function () {
             $("#size_container").find("p").remove();
             response.forEach(element => {
                 $("#size_container").append(`
-                    <p onclick="ChooseSize(this)">`+ element.name +`</p>
+                    <p onclick="ChooseSize(this)" data-name="`+ element.name +`">`+ element.name +`</p>
                 `);
             });
         }
@@ -53,8 +55,10 @@ $('#color_container img').on('click', function () {
 });
 
 function ChooseSize(e) {
+    $('#size_container p').removeAttr("class", "size-choosed");
     $('#size_container p').attr("style", "border: 1px solid lightgray");
     $(e).attr("style", "border: 1px solid black");
+    $(e).attr("class", "size-choosed");
 }
 
 $('#plus_quantity').on('click', function () {
@@ -72,3 +76,23 @@ $('#tab_container p').on('click', function () {
     $(".tab_content").attr("style", "display: none");
     $(".tab_content").eq($(this).attr("data-tab")).attr("style", "display: block");
 });
+
+function AddToCart(idProduct, nameProduct, priceProduct) {
+    let cart = (localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : new Array();
+    let quantityInCart = (localStorage.getItem("quantityInCart")) ? Number(localStorage.getItem("quantityInCart")) : 0;
+    let data = {"idProduct": idProduct, "nameProduct": nameProduct, "priceProduct": priceProduct, color: $(".color-choosed").eq(0).data("name"), "size": $(".size-choosed").eq(0).data("name"), "quantity": Number($("#quantity_add_to_cart").val())};
+    let check = true;
+    if(cart.length != 0)
+        cart.forEach(element => {
+            if(element.id == data.id && element.color == data.color && element.size == data.size){
+                element.quantity += Number(data.quantity);
+                check = false;
+            }
+        });
+    if (check == true || cart.length == 0) {
+        cart.push(data);
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("quantityInCart", Number(quantityInCart) + Number(data.quantity));
+    $("#quantity-in-cart").text("(" + (Number(quantityInCart) + Number(data.quantity)) + ")");
+}

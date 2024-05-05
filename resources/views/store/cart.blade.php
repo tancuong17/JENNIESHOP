@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
+    <title>Giỏ hàng</title>
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -25,56 +25,41 @@
             <li>Giỏ hàng</li>
         </ul>
     </div>
-    <div style="height: 22rem; display: grid; height: fit-content; grid-template-columns: 2fr 1fr; margin: 0 4rem 3rem; gap: 0.5rem;">
+    <div style="height: 30rem; display: grid; height: fit-content; grid-template-columns: 2fr 1fr; margin: 0 4rem 3rem; gap: 0.5rem;">
         <div>
-            <div style="overflow-y: auto; height: 18rem; display: grid; grid-auto-rows: min-content; gap: 0.5rem">
-                <div style="height: 5rem; background: whitesmoke; display: flex; justify-content: space-between; align-items: center; padding: 0 0.5rem">
-                    <div style="display: flex; justify-content: center; flex-direction: column;">
-                        <p>ÁO SƠ MI NỮ - TOTODAY - 02303</p>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <p>250,000đ</p>
-                            <p>|</p>
-                            <p>Xoá</p>
-                        </div>
-                    </div>
-                    <div style=" display: flex; gap: 1rem; margin-top: 0.5rem; align-items: center;">
-                        <?xml version="1.0" encoding="UTF-8"?><svg id="plus_quantity" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                        <input style="width: 2rem; height: 2rem; text-align: center; outline: none; border: 1px solid lightgray;" type="number" id="quantity_add_to_cart" value="1">
-                        <?xml version="1.0" encoding="UTF-8"?><svg id="minus_quantity" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M6 12H18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </div>
-                </div>
-                <div style="height: 5rem; background: whitesmoke; display: flex; justify-content: space-between; align-items: center; padding: 0 0.5rem">
-                    <div style="display: flex; justify-content: center; flex-direction: column;">
-                        <p>ÁO SƠ MI NỮ - TOTODAY - 02303</p>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <p>250,000đ</p>
-                            <p>|</p>
-                            <p>Xoá</p>
-                        </div>
-                    </div>
-                    <div style=" display: flex; gap: 1rem; margin-top: 0.5rem; align-items: center;">
-                        <?xml version="1.0" encoding="UTF-8"?><svg id="plus_quantity" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                        <input style="width: 2rem; height: 2rem; text-align: center; outline: none; border: 1px solid lightgray;" type="number" id="quantity_add_to_cart" value="1">
-                        <?xml version="1.0" encoding="UTF-8"?><svg id="minus_quantity" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M6 12H18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </div>
-                </div>
+            <div id="product-in-cart" style="overflow-y: auto; height: 26rem; display: grid; grid-auto-rows: min-content; gap: 0.5rem">
             </div>
             <div style="height: 3.5rem; display: flex; align-items: center; margin-top: 0.5rem; background: lightgray; padding: 0 0.5rem">
-                <p>Tổng tiền: 350,000đ</p>
+                <p id="total-money">Tổng tiền: 0đ</p>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%; justify-content: space-between">
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <p>Họ và tên</p>
-                <input type="text" class="input_info" placeholder="...">
+                <input type="text" class="input_info" placeholder="..." id="customer">
                 <p>Số điện thoại</p>
-                <input type="text" class="input_info" placeholder="...">
+                <input type="text" class="input_info" placeholder="..." id="phonenumber">
                 <p>Email</p>
-                <input type="text" class="input_info" placeholder="...">
+                <input type="text" class="input_info" placeholder="..." id="email">
+                <p>Ghi chú</p>
+                <textarea placeholder="..." id="note" style="resize: none" class="input_info"></textarea>
                 <p>Địa chỉ giao hàng</p>
-                <input type="text" class="input_info" placeholder="...">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; align-items: center">
+                        <select class="input_info" id="province" onchange="ChangeProvince(this)">
+                            <option value="0">Tỉnh/Thành phố</option>
+                        </select>
+                        <select class="input_info" id="district" onchange="ChangeDistrict(this)">
+                            <option value="0">Quận/Huyện</option>
+                        </select>
+                        <select class="input_info" id="ward">
+                            <option value="0">Xã/Phường</option>
+                        </select>
+                    </div>
+                    <input id="address" type="text" class="input_info" placeholder="Số nhà và tên đường">
+                </div>
             </div>
-            <button class="button-w100">Đặt hàng</button>
+            <button class="button-w100" onclick="AddOrder()">Đặt hàng</button>
         </div>
     </div>
     @include('store.footer')
@@ -82,4 +67,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{URL::asset('resources/js/store/index.js')}}"></script>
+<script src="{{URL::asset('resources/js/store/cart.js')}}"></script>
 </html>

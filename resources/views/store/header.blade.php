@@ -52,7 +52,7 @@
                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
                 <p>Giỏ hàng</p>
-                <span>(9+)</span>
+                <span id="quantity-in-cart">(0)</span>
             </a>
             <div id="user_container">
                 <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"

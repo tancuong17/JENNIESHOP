@@ -10,6 +10,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,16 @@ Route::post('updatetypeproduct', function (Request $request){
     try {
         $typeProductController = new TypeProductController();
         $result = $typeProductController->update($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
+Route::post('addorder', function (Request $request){
+    try {
+        $orderController = new OrderController();
+        $result = $orderController->add($request);
         return json_encode($result);
     } catch (\Throwable $th) {
         return json_encode($th);
