@@ -17,7 +17,13 @@
             <li>Danh sách</li>
         @elseif(str_contains(Request::path(), 'manage/detailtypeproduct'))
             <li>Loại sản phẩm</li>
-            <li>Chi tiết loại sản phẩm</li>
+            <li>Chi tiết</li>
+        @elseif(str_contains(Request::path(), 'manage/listorder'))
+            <li>Đơn hàng</li>
+            <li>Danh sách</li>
+        @elseif(str_contains(Request::path(), 'manage/detailorder'))
+            <li>Đơn hàng</li>
+            <li>Chi tiết</li>
         @endif
     </ul>
     <div id="user_container">

@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Danh sách sản phẩm</title>
+    <title>Danh sách đơn hàng</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/manage/index.css')}}">
@@ -43,20 +43,20 @@
                 <table>
                     <tr>
                         <th style="width: 5%; text-align: center">STT</th>
-                        <th style="width: 10%">Mã SKU</th>
-                        <th style="width: 60%">Tên</th>
+                        <th style="width: 20%">Khách hàng</th>
+                        <th style="width: 60%">Địa chi</th>
                         <th style="width: 15%">Trạng thái</th>
                     </tr>
-                    @foreach($products as $product)
-                    <tr onclick="LinkProduct('{{$product['id']}}')">
+                    @foreach($orders as $order)
+                    <tr onclick="LinkOrder('{{$order['id']}}')">
                         <td style="text-align: center">{{ (Request::get('page') - 1) * $quantity + $loop->index + 1}}</td>
-                        <td>{{$product['sku_code']}}</td>
-                        <td>{{$product['name']}}</td>
+                        <td>{{$order['customer']}}</td>
+                        <td>{{$order['address']}}</td>
                         <td>
-                            @if ($product['status'] == 1)
-                                Đang kinh doanh
+                            @if($order['status'] == 0)
+                                Chưa thanh toán
                             @else
-                                Ngưng kinh doanh 
+                                Đã thanh toán
                             @endif
                         </td>
                     </tr>
@@ -64,12 +64,12 @@
                 </table>
             </div>
             <div class="table_bottom">
-                {!! $products->links('manage.paginator', ['quantity' => $quantity]) !!}
+                {!! $orders->links('manage.paginator', ['quantity' => $quantity]) !!}
             </div>
         </div>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{URL::asset('resources/js/manage/menu.js')}}"></script>
-<script src="{{URL::asset('resources/js/manage/listproduct.js')}}"></script>
+<script src="{{URL::asset('resources/js/manage/listorder.js')}}"></script>
 </html>

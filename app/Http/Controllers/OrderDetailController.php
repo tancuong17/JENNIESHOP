@@ -18,4 +18,12 @@ class OrderDetailController extends Controller
       $orderDetail->quantity = $element->quantity;
       $orderDetail->save();
     }
+    public function gets($idOrder){
+      try {
+          $detailOrder = OrderDetail::where('id_order', $idOrder)->get();
+          return $detailOrder;
+      } catch (\Throwable $th) {
+          return json_encode($th);
+      }
+  }
 }

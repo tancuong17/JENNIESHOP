@@ -3,6 +3,8 @@
     use App\Http\Controllers\ProductController;
     use App\Http\Controllers\TypeProductController;
     use App\Http\Controllers\TypeProductDetailController;
+    use App\Http\Controllers\OrderController;
+    use App\Http\Controllers\OrderDetailController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -101,5 +103,19 @@
     });
     Route::get('gio-hang', function () {
         return view('store.cart');
+    });
+    Route::get('manage/listorder/{quantity}', function ($quantity) {
+        $orderController = new OrderController();
+        $orders = $orderController->gets($quantity);
+        $quantity = $quantity;
+        return view('manage.listorder', compact('orders', 'quantity'));
+    });
+    Route::get('manage/detailorder/{id}', function ($id) {
+        $quantity = 2;
+        $orderController = new OrderController();
+        $orderDetailController = new OrderDetailController();
+        $order = $orderController->get($id);
+        $orderdetail = $orderDetailController->gets($id);
+        return view('manage.detailorder', compact('quantity', 'order', 'orderdetail'));
     });
 ?>

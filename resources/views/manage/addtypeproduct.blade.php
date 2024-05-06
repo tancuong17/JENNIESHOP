@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Thêm loại sản phẩm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/manage/index.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/manage/menu.css')}}">

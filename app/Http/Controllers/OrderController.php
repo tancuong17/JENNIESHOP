@@ -31,4 +31,20 @@ class OrderController extends Controller
             return json_encode($th);
         }
     }
+    public function gets($quantity){
+        try {
+            $orders = Order::orderBy('id', 'desc')->paginate($quantity);
+            return $orders;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
+    public function get($id){
+        try {
+            $order = Order::where("id", $id)->get();
+            return $order;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
 }
