@@ -111,11 +111,6 @@
     margin-top: 0.5rem;
 }
 
-#size_container p{
-    padding: 0.5rem 2rem;
-    border: 1px solid lightgray;
-}
-
 #quantity_container{
     display: flex;
     gap: 1rem;
@@ -184,4 +179,13 @@
 
 .tab_content:nth-child(1){
     display: block;
+}
+
+.size{
+    padding: 0.5rem 2rem;
+    border: 1px solid lightgray;
+}
+
+.size:nth-child(1){
+    border: 1px solid black;
 }

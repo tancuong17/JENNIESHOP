@@ -32,3 +32,13 @@ $(window).resize(function () {
 
 let quantityInCart = (localStorage.getItem("quantityInCart")) ? Number(localStorage.getItem("quantityInCart")) : 0;
 $("#quantity-in-cart").text("(" + quantityInCart + ")");
+
+var perfEntries = performance.getEntriesByType("navigation");
+
+(function () {
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+})();

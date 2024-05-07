@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/header.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/footer.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/index.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/cart.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
 </head>
@@ -25,9 +26,12 @@
             <li>Giỏ hàng</li>
         </ul>
     </div>
-    <div style="height: 30rem; display: grid; height: fit-content; grid-template-columns: 2fr 1fr; margin: 0 4rem 3rem; gap: 0.5rem;">
+    <div id="cart-container">
         <div>
             <div id="product-in-cart" style="overflow-y: auto; height: 26rem; display: grid; grid-auto-rows: min-content; gap: 0.5rem">
+                <div id="cart-empty" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 26rem;">
+                    <img style="width: 15rem; height: 15rem;" src="https://schoolville.com/assets/img/empty-cart-illustration.gif" alt="icon">
+                </div>
             </div>
             <div style="height: 3.5rem; display: flex; align-items: center; margin-top: 0.5rem; background: lightgray; padding: 0 0.5rem">
                 <p id="total-money">Tổng tiền: 0đ</p>

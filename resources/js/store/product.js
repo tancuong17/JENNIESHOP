@@ -47,7 +47,7 @@ $('#color_container img').on('click', function () {
             $("#size_container").find("p").remove();
             response.forEach(element => {
                 $("#size_container").append(`
-                    <p onclick="ChooseSize(this)" data-name="`+ element.name +`">`+ element.name +`</p>
+                    <p class="size" onclick="ChooseSize(this)" data-name="`+ element.name +`">`+ element.name +`</p>
                 `);
             });
         }
@@ -56,9 +56,9 @@ $('#color_container img').on('click', function () {
 
 function ChooseSize(e) {
     $('#size_container p').removeAttr("class", "size-choosed");
-    $('#size_container p').attr("style", "border: 1px solid lightgray");
+    $('#size_container p').attr("style", "padding: 0.5rem 2rem; border: 1px solid lightgray");
     $(e).attr("style", "border: 1px solid black");
-    $(e).attr("class", "size-choosed");
+    $(e).attr("class", "size size-choosed");
 }
 
 $('#plus_quantity').on('click', function () {
@@ -80,7 +80,7 @@ $('#tab_container p').on('click', function () {
 function AddToCart(idProduct, nameProduct, priceProduct) {
     let cart = (localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : new Array();
     let quantityInCart = (localStorage.getItem("quantityInCart")) ? Number(localStorage.getItem("quantityInCart")) : 0;
-    let data = {"idProduct": idProduct, "nameProduct": nameProduct, "priceProduct": priceProduct, color: $(".color-choosed").eq(0).data("name"), "size": $(".size-choosed").eq(0).data("name"), "quantity": Number($("#quantity_add_to_cart").val())};
+    let data = {"position": cart.length + 1,"idProduct": idProduct, "nameProduct": nameProduct, "priceProduct": priceProduct, color: $(".color-choosed").eq(0).data("name"), "size": $(".size-choosed").eq(0).data("name"), "quantity": Number($("#quantity_add_to_cart").val())};
     let check = true;
     if(cart.length != 0)
         cart.forEach(element => {
@@ -95,4 +95,5 @@ function AddToCart(idProduct, nameProduct, priceProduct) {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("quantityInCart", Number(quantityInCart) + Number(data.quantity));
     $("#quantity-in-cart").text("(" + (Number(quantityInCart) + Number(data.quantity)) + ")");
+    window.location.href = "http://localhost/shop/gio-hang";
 }

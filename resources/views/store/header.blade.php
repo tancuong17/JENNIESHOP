@@ -20,7 +20,9 @@
                         stroke-linejoin="round"></path>
                 </svg>
             </div>
-            <img class="logo" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
+            <a href="http://localhost/shop">
+                <img class="logo" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
+            </a>
             <ul id="menu">
                 <li>NEW ARRIVALS</li>
                 <li>SALE HẾT NGHỈ TẾT</li>

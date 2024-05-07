@@ -52,7 +52,7 @@
         @foreach($products as $product)
             <div class="product">
                 <a href="./chi-tiet-san-pham/{{ $product['slug'] }}">
-                    <img src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
+                    <img class="image-product" src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
                     <h1>{{ $product['name'] }}</h1>
                 </a>
                 <div class="product_bottom">
