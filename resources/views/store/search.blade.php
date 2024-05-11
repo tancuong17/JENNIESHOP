@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$typeProduct[0]['name']}}</title>
+    <title>Tìm kiếm</title>
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -16,22 +16,12 @@
 <body>
     @include('store.header')
     @include('store.menu')
-    <div class="image-banner">
-        <img src="{{env('URL_IMAGE')}}{{$typeProduct[0]['image']}}" alt="banner">
-    </div>
-    <div class="text_title_left">
+    <div class="text_title_left" style="margin-top: 8rem">
         <ul class="navigation">
             <li>Trang chủ</li>
-            <li>{{$typeProduct[0]['name']}}</li>
+            <li>Tìm kiếm</li>
         </ul>
     </div>
-    @if(count($typeProductParents) > 0)
-    <div id="type-product-container">
-        @foreach($typeProductParents as $typeProductParent)
-            <a href="http://localhost/shop/loai-san-pham/{{$typeProductParent['slug']}}/{{$typeProductParent['id']}}?page=1" class="type-product">{{$typeProductParent['name']}}</a>
-        @endforeach
-    </div>
-    @endif
     <div class="product_container" @if(count($products) == 0) style="display: block;" @endif>
         @if(count($products) == 0)
             <div id="cart-empty" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 26rem;">
@@ -64,7 +54,7 @@
         @endforeach
     </div>
     <div class="paginator-container">
-        {!! $typeProductDetails->links('store.paginator', ['quantity' => 2]) !!}
+        {!! $products->links('store.paginator', ['quantity' => 2]) !!}
     </div>
     @include('store.footer')
 </body>

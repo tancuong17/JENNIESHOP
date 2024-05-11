@@ -42,3 +42,23 @@ var perfEntries = performance.getEntriesByType("navigation");
         }
     };
 })();
+
+function Search() {
+    window.location.href = "http://localhost/shop/tim-kiem/" + $("#keyword").val() + "?page=1";
+}
+
+function SearchMobile() {
+    window.location.href = "http://localhost/shop/tim-kiem/" + $("#keyword-mobile").val() + "?page=1";
+}
+
+$("#keyword").keypress(function (e) {
+    if (e.which == 13) {
+        Search();
+    }
+});
+
+$("#keyword-mobile").keypress(function (e) {
+    if (e.which == 13) {
+        SearchMobile();
+    }
+});

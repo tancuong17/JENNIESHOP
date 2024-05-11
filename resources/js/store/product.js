@@ -45,10 +45,15 @@ $('#color_container img').on('click', function () {
         dataType: "json",
         success: function (response) {
             $("#size_container").find("p").remove();
-            response.forEach(element => {
-                $("#size_container").append(`
-                    <p class="size" onclick="ChooseSize(this)" data-name="`+ element.name +`">`+ element.name +`</p>
-                `);
+            response.forEach((element, index) => {
+                if(index == 0)
+                    $("#size_container").append(`
+                        <p class="size size-choosed" onclick="ChooseSize(this)" data-name="`+ element.name +`">`+ element.name +`</p>
+                    `);
+                else
+                    $("#size_container").append(`
+                        <p class="size" onclick="ChooseSize(this)" data-name="`+ element.name +`">`+ element.name +`</p>
+                    `);
             });
         }
     });

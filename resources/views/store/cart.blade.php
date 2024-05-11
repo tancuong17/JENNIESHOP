@@ -42,7 +42,7 @@
                 <p>Họ và tên</p>
                 <input type="text" class="input_info" placeholder="..." id="customer">
                 <p>Số điện thoại</p>
-                <input type="text" class="input_info" placeholder="..." id="phonenumber">
+                <input type="number" class="input_info" placeholder="..." id="phonenumber">
                 <p>Email</p>
                 <input type="text" class="input_info" placeholder="..." id="email">
                 <p>Ghi chú</p>

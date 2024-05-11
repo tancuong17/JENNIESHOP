@@ -28,6 +28,9 @@
     Route::get('manage/login', function () {
         return view('manage.login');
     });
+    Route::get('dang-nhap', function () {
+        return view('store.login');
+    });
     Route::get('manage/dashboard', function () {
         return view('manage.dashboard');
     });
@@ -103,6 +106,15 @@
     });
     Route::get('gio-hang', function () {
         return view('store.cart');
+    });
+    Route::get('tim-kiem/{keyword}', function ($keyword) {
+        $productController = new ProductController();
+        $data = $productController->search($keyword, 8);
+        $products = $data["products"];
+        $images = $data["images"];
+        $prices = $data["prices"];
+        $keyword = $keyword;
+        return view('store.search', compact('products', 'images', 'prices', 'keyword'));
     });
     Route::get('manage/listorder/{quantity}', function ($quantity) {
         $orderController = new OrderController();

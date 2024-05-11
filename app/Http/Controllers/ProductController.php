@@ -99,6 +99,23 @@ class ProductController extends Controller
         }
     }
 
+    public function search($keyword, $quantity){
+        try {
+            $images = array();
+            $prices = array();
+            $imageController = new ImageController();
+            $priceController = new PriceController();
+            $products = Product::whereRaw("name like '%$keyword%'")->orderBy('id', 'desc')->paginate($quantity);
+            foreach ($products as $product) {
+                array_push($images, $imageController->get($product->id));
+                array_push($prices, $priceController->get($product->id));
+            }
+            return ["products" => $products, "images" => $images, "prices" => $prices];
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
+
     public function delete($idProduct){
         try {
             $priceController = new PriceController();

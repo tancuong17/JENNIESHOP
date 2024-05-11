@@ -33,8 +33,8 @@
         </div>
         <div id="right_header">
             <div id="search_container">
-                <input placeholder="Bạn muốn tìm..." />
-                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24"
+                <input placeholder="Bạn muốn tìm..." @if(str_contains(Request::path(), 'tim-kiem')) value="{{$keyword}}" @endif id="keyword"/>
+                <?xml version="1.0" encoding="UTF-8"?><svg onclick="Search()" width="24px" height="24px" viewBox="0 0 24 24"
                     stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
                     <path d="M17 17L21 21" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
                         stroke-linejoin="round"></path>
@@ -56,7 +56,7 @@
                 <p>Giỏ hàng</p>
                 <span id="quantity-in-cart">(0)</span>
             </a>
-            <div id="user_container">
+            <a id="user_container" href="http://localhost/shop/dang-nhap">
                 <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
                     <path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="#000000"
@@ -66,13 +66,13 @@
                         stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
                 <p>Đăng nhập</p>
-            </div>
+            </a>
         </div>
     </div>
 </header>
 <div id="search_form_container_mobile">
-    <input placeholder="Bạn muốn tìm..." />
-    <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5"
+    <input placeholder="Bạn muốn tìm..." @if(str_contains(Request::path(), 'tim-kiem')) value="{{$keyword}}" @endif id="keyword-mobile"/>
+    <?xml version="1.0" encoding="UTF-8"?><svg onclick="SearchMobile()" width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5"
         fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
         <path d="M17 17L21 21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         </path>

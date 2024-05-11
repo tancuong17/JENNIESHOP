@@ -26,7 +26,7 @@ class OrderController extends Controller
             for ($i=0; $i < count($cart); $i++) { 
                 $orderDetailController->add($cart[$i], $order->id);
             }
-            return "Thêm thành công";
+            return "Đặt hàng thành công";
         } catch (\Throwable $th) {
             return json_encode($th);
         }
