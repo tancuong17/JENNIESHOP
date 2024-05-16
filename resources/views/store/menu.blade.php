@@ -7,11 +7,11 @@
                 stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
         <ul>
-            <li>NEW ARRIVALS</li>
-            <li>SALE HẾT NGHỈ TẾT</li>
+            <li>TRANG CHỦ</li>
             <li>SẢN PHẨM</li>
             <li>BỘ SƯU TẬP</li>
-            <li>FEEDBACK</li>
+            <li>KHUYỄN MÃI</li>
+            <li>TIN TỨC</li>
         </ul>
     </div>
 </div>

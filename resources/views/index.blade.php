@@ -39,14 +39,9 @@
                 <p>{{$typeproduct['detail']}}</p>
             </a>       
         @endforeach
-        <a>
-            <img class="catelory_image" src="{{env('URL_IMAGE')}}/images/top.png" alt="catelory">
-            <p>#JENNIE</p>
-            <p>Sản phẩm được JENNIE đề xuất</p>
-        </a>
     </div>
     <div class="title_text text_title_left">
-        <p>SẢN PHẨM NỔI BẬT</p>
+        <p>SẢN PHẨM MỚI</p>
     </div>
     <div class="product_container">
         @foreach($products as $product)
@@ -68,36 +63,22 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="add_to_cart">
-                        <img src="{{env('URL_IMAGE')}}/images/cart.svg" alt="cart">
-                        <p>Thêm</p>
-                    </div>
                 </div>
             </div>
         @endforeach
     </div>
     <div class="title_text text_title_left">
-        <p>BỘ SƯU TẬP</p>
+        <p>TIN TỨC</p>
     </div>
     <div id="collection_container">
-        <div class="collection">
-            <img src="{{env('URL_IMAGE')}}/images/bo_suu_tap.jpeg" alt="collection">
-            <div class="collection_text">
-                <p>ENOUGHIMS - "BIẾT ĐỦ"</p>
-            </div>
-        </div>
-        <div class="collection">
-            <img src="{{env('URL_IMAGE')}}/images/bo_suu_tam_2.jpg" alt="collection">
-            <div class="collection_text">
-                <p>DOPAMINE - "MÀU SẮC CHỮA LÀNH"</p>
-            </div>
-        </div>
-        <div class="collection">
-            <img src="{{env('URL_IMAGE')}}/images/bo_suu_tam_3.jpg" alt="collection">
-            <div class="collection_text">
-                <p>RETRO DENIM IS FUTURE</p>
-            </div>
-        </div>
+        @foreach($news as $data)
+            <a class="collection" href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}">
+                <img src="{{env('URL_IMAGE')}}{{$data["image"]}}" alt="collection">
+                <div class="collection_text">
+                    <p>{{$data["title"]}}</p>
+                </div>
+            </a>
+        @endforeach
     </div>
     @include('store.footer')
 </body>

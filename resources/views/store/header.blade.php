@@ -24,11 +24,11 @@
                 <img class="logo" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
             </a>
             <ul id="menu">
-                <li>NEW ARRIVALS</li>
-                <li>SALE HẾT NGHỈ TẾT</li>
+                <li>TRANG CHỦ</li>
                 <li>SẢN PHẨM</li>
                 <li>BỘ SƯU TẬP</li>
-                <li>FEEDBACK</li>
+                <li>KHUYỄN MÃI</li>
+                <li>TIN TỨC</li>
             </ul>
         </div>
         <div id="right_header">

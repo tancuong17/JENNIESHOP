@@ -26,11 +26,14 @@ CKEDITOR.editorConfig = function( config ) {
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
-	config.extraPlugins = 'base64image, justify, emojione, youtube';
+	config.extraPlugins = 'justify, emojione, youtube, file-manager';
 	config.youtube_responsive = true;
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
-	config.removeButtons = 'Image';
+	//config.removeButtons = 'Image';
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	config.Flmngr = {
+        apiKey: "lC4kUiv3",
+    };
 };

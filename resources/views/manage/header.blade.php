@@ -24,6 +24,9 @@
         @elseif(str_contains(Request::path(), 'manage/detailorder'))
             <li>Đơn hàng</li>
             <li>Chi tiết</li>
+        @elseif(str_contains(Request::path(), 'manage/addnews'))
+            <li>Tin tức</li>
+            <li>Thêm</li>
         @endif
     </ul>
     <div id="user_container">

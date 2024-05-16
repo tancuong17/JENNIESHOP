@@ -11,6 +11,7 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('addproduct', [ProductController::class, 'add']);
 
 Route::post('updateproduct', [ProductController::class, 'update']);
+
+Route::post('addsize', [SizeController::class, 'addOne']);
+
+Route::post('updatesize', [SizeController::class, 'update']);
+
+Route::post('deletesize', [SizeController::class, 'delete']);
+
+Route::post('updatecolor', [ColorController::class, 'update']);
+
+Route::post('deletecolor', [ColorController::class, 'delete']);
 
 Route::post('updatetypeproductdetail', function (Request $request){
     $typeProductDetailController = new TypeProductDetailController();
@@ -124,12 +135,6 @@ Route::post('updateimage', function (Request $request){
     }
 });
 
-Route::post('addsize', [SizeController::class, 'addOne']);
-
-Route::post('updatesize', [SizeController::class, 'update']);
-
-Route::post('deletesize', [SizeController::class, 'delete']);
-
 Route::post('addcolor', function (Request $request){
     try {
         $colorController = new ColorController();
@@ -140,8 +145,12 @@ Route::post('addcolor', function (Request $request){
     }
 });
 
-Route::post('updatecolor', [ColorController::class, 'update']);
-
-Route::post('deletecolor', [ColorController::class, 'delete']);
-
-
+Route::post('addnews', function (Request $request){
+    try {
+        $newsController = new NewsController();
+        $result = $newsController->add($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});

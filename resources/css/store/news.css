@@ -1,0 +1,9 @@
+#news-content{
+    margin: 0 1rem 2rem;
+}
+
+.n1ed--selected{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}

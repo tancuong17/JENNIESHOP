@@ -45,10 +45,6 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="add_to_cart">
-                        <img src="{{env('URL_IMAGE')}}/images/cart.svg" alt="cart">
-                        <p>Thêm</p>
-                    </div>
                 </div>
             </a>
         @endforeach

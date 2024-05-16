@@ -48,7 +48,10 @@
                 @endforeach
             </div>
             <div class="button-container">
-                <button class="button-w100" id="remove_product_btn">Huỷ đơn hàng</button>
+                <button class="button-w100">Đã giao hàng</button>
+            </div>
+            <div class="button-container">
+                <button class="button-w100" style="background-color: rgb(175, 13, 13); border: 1px solid rgb(175, 13, 13)" id="remove_product_btn">Huỷ đơn hàng</button>
             </div>
         </div>
     </div>
