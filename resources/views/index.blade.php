@@ -70,11 +70,11 @@
     <div class="title_text text_title_left">
         <p>TIN TỨC</p>
     </div>
-    <div id="collection_container">
+    <div id="news_container">
         @foreach($news as $data)
-            <a class="collection" href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}">
-                <img src="{{env('URL_IMAGE')}}{{$data["image"]}}" alt="collection">
-                <div class="collection_text">
+            <a class="news" href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}">
+                <img src="{{env('URL_IMAGE')}}{{$data["image"]}}" alt="news">
+                <div class="news_text">
                     <p>{{$data["title"]}}</p>
                 </div>
             </a>

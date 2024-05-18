@@ -35,4 +35,25 @@ class NewsController extends Controller
             return json_encode($th);
         }
     }
+
+    public function update($request){
+        try {
+            $news = News::where("id", $request->id)->get();
+            $condition = array();
+            if($request->title != $news[0]->title){
+                $condition["title"] = $request->title;
+                $condition["slug"] = $request->slug;
+            }
+            if($request->content != $news[0]->content)
+                $condition["content"] = $request->content;
+            if(isset($request->image) == true){
+                Storage::delete($news[0]->image);
+                $condition["image"] = $request->file('image')->store('images');
+            }
+            News::whereRaw("id = $request->id")->update($condition);
+            return "Cập nhật thành công";
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
 }

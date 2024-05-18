@@ -207,7 +207,7 @@ a {
   height: 0.8rem;
 }
 
-#collection_container {
+#news_container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 4rem;
@@ -216,22 +216,23 @@ a {
 
 }
 
-.collection {
+.news {
+  height: 18rem;
   position: relative;
   overflow: hidden;
 }
 
-.collection img {
+.news img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.collection:hover img {
+.news:hover img {
   transform: scale(1.1);
 }
 
-.collection_text {
+.news_text {
   position: absolute;
   width: 100%;
   height: 100%;

@@ -163,8 +163,22 @@
     Route::post('/flmngr', function () {
         \EdSDK\FlmngrServer\FlmngrServer::flmngrRequest(
             array(
-                'dirFiles' => base_path() . '/storage/app/images'
+                'dirFiles' => base_path() . '/public/files'
             )
         );
+    });
+
+    Route::get('manage/listnews/{quantity}', function ($quantity) {
+        $quantity = $quantity;
+        $newsController = new NewsController();
+        $news = $newsController->gets(3);
+        return view('manage.listnews', compact('quantity', 'news'));
+    });
+
+    Route::get('manage/detailnews/{id}', function ($id) {
+        $quantity = 2;
+        $newsController = new NewsController();
+        $news = $newsController->get($id);
+        return view('manage.detailnews', compact('quantity', 'news'));
     });
 ?>

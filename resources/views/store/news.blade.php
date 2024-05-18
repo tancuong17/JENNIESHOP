@@ -36,6 +36,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{URL::asset('resources/js/store/index.js')}}"></script>
 <script>
-    $(".n1ed--selected").removeAttr("style");
+    $("#news-content").find("img").removeAttr("style");
 </script>
 </html>

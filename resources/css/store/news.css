@@ -2,8 +2,8 @@
     margin: 0 1rem 2rem;
 }
 
-.n1ed--selected{
-    width: 100%;
-    height: auto;
+#news-content img{
+    max-width: 100%;
+    max-height: auto;
     object-fit: cover;
 }

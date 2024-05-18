@@ -154,3 +154,13 @@ Route::post('addnews', function (Request $request){
         return json_encode($th);
     }
 });
+
+Route::post('updatenews', function (Request $request){
+    try {
+        $newsController = new NewsController();
+        $result = $newsController->update($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});

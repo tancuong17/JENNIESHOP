@@ -27,6 +27,12 @@
         @elseif(str_contains(Request::path(), 'manage/addnews'))
             <li>Tin tức</li>
             <li>Thêm</li>
+        @elseif(str_contains(Request::path(), 'manage/listnews'))
+            <li>Tin tức</li>
+            <li>Danh sách</li>
+        @elseif(str_contains(Request::path(), 'manage/detailnews'))
+            <li>Tin tức</li>
+            <li>Chi tiết</li>
         @endif
     </ul>
     <div id="user_container">
