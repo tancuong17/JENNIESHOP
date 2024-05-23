@@ -12,6 +12,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,9 +102,10 @@ Route::get('getsize/{idColor}', function ($idColor){
 
 Route::post('pricepromotion', function (Request $request){
     try {
+        $user = Auth::user();
         $priceController = new PriceController();
         $priceController->updateStatusByType($request->idProduct, 0);
-        $priceController->add(array("id_product" => $request->idProduct, "price" => $request->price, "type_price" => 0, "creator" => 1, "created_at" => $request->startDate, "updated_at" => $request->endDate));
+        $priceController->add(array("id_product" => $request->idProduct, "price" => $request->price, "type_price" => 0, "creator" => $user->id, "created_at" => $request->startDate, "updated_at" => $request->endDate));
         return json_encode("Cập nhật thành công!");
     } catch (\Throwable $th) {
         return json_encode($th);
@@ -112,9 +114,10 @@ Route::post('pricepromotion', function (Request $request){
 
 Route::post('updateprice', function (Request $request){
     try {
+        $user = Auth::user();
         $priceController = new PriceController();
         $priceController->updateStatusByType($request->idProduct, 1);
-        $priceController->add(array("id_product" => $request->idProduct, "price" => $request->price, "type_price" => 1, "creator" => 1));
+        $priceController->add(array("id_product" => $request->idProduct, "price" => $request->price, "type_price" => 1, "creator" => $user->id));
         return json_encode("Cập nhật thành công!");
     } catch (\Throwable $th) {
         return json_encode($th);
@@ -159,6 +162,16 @@ Route::post('updatenews', function (Request $request){
     try {
         $newsController = new NewsController();
         $result = $newsController->update($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
+Route::post('deletenews', function (Request $request){
+    try {
+        $newsController = new NewsController();
+        $result = $newsController->delete($request);
         return json_encode($result);
     } catch (\Throwable $th) {
         return json_encode($th);

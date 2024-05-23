@@ -65,6 +65,7 @@ cart.forEach(element => {
             </div>
         </div>
     `);
+    localStorage.setItem("totalMoney", totalMoney);
 });
 
 if(cart.length != 0)
@@ -88,6 +89,7 @@ function AddQuantity(e, position) {
     localStorage.setItem("quantityInCart", quantityInCart + 1);
     $("#quantity-in-cart").text("(" + Number(quantityInCart + 1) + ")");
     $("#total-money").text("Tổng tiền: " + totalMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "đ");
+    localStorage.setItem("totalMoney", totalMoney);
 }
 
 function MinusQuantity(e, position) {
@@ -107,6 +109,7 @@ function MinusQuantity(e, position) {
         localStorage.setItem("cart", JSON.stringify(cart));
         $("#quantity-in-cart").text("(" + Number(quantityInCart - 1) + ")");
         $("#total-money").text("Tổng tiền: " + totalMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "đ");
+        localStorage.setItem("totalMoney", totalMoney);
     }
 }
 
@@ -125,6 +128,7 @@ function ChangeQuantity(e, position) {
     localStorage.setItem("quantityInCart", quantityInCart);
     $("#quantity-in-cart").text("(" + Number(quantityInCart) + ")");
     $("#total-money").text("Tổng tiền: " + totalMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "đ");
+    localStorage.setItem("totalMoney", totalMoney);
 }
 
 function DeleteProductInCart(e, position) {
@@ -145,6 +149,7 @@ function DeleteProductInCart(e, position) {
     localStorage.setItem("quantityInCart", quantityInCart);
     $("#quantity-in-cart").text("(" + Number(quantityInCart) + ")");
     $("#total-money").text("Tổng tiền: " + totalMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "đ");
+    localStorage.setItem("totalMoney", totalMoney);
     if (quantityInCart == 0) {
         $("#cart-empty").attr("style", "display: flex; justify-content: center; align-items: center; width: 100%; height: 26rem;");
     }
@@ -165,7 +170,8 @@ function AddOrder() {
                 "address": $("#address").val() + ", " + $("#ward option:selected").text() + ", " + $("#district option:selected").text() + ", " + $("#province option:selected").text(),
                 "cart": localStorage.getItem("cart"),
                 "status": 0,
-                "payment": 0
+                "payment": 0,
+                "totalamount": Number(localStorage.getItem("totalMoney"))
             },
         dataType: "json",
         success: function (response) {

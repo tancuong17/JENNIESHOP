@@ -18,15 +18,15 @@
         @include('manage.header')
         <div id="order_container">
             <p class="title">Khách hàng</p>
-            <input type="text" placeholder="..." value="{{$order[0]['customer']}}" class="input_info" id="name">
+            <input disabled type="text" placeholder="..." value="{{$order[0]['customer']}}" class="input_info" id="name">
             <p class="title">Số điện thoại</p>
-            <input type="text" placeholder="..." value="{{$order[0]['phonenumber']}}" class="input_info" id="name">
+            <input disabled type="text" placeholder="..." value="{{$order[0]['phonenumber']}}" class="input_info" id="name">
             <p class="title">Email</p>
-            <input type="text" placeholder="..." value="{{$order[0]['email']}}" class="input_info" id="name">
+            <input disabled type="text" placeholder="..." value="{{$order[0]['email']}}" class="input_info" id="name">
             <p class="title">Địa chỉ giao hàng</p>
-            <input type="text" placeholder="..." value="{{$order[0]['address']}}" class="input_info" id="name">
+            <input disabled type="text" placeholder="..." value="{{$order[0]['address']}}" class="input_info" id="name">
             <p class="title">Ghi chú</p>
-            <textarea name="" id="detail" cols="30" class="input_info" style="resize: none" rows="10" placeholder="...">{{$order[0]['note']}}</textarea>
+            <textarea disabled name="" id="detail" cols="30" class="input_info" style="resize: none" rows="10" placeholder="...">{{$order[0]['note']}}</textarea>
             <p class="title">Danh sách sản phẩm</p>
             <div style="display: flex; flex-direction: column; gap: 0.5rem">
                 @foreach($orderdetail as $product)
@@ -35,14 +35,10 @@
                             <p>{{$product["name"]}} - {{$product["color"]}} - {{$product["size"]}}</p>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
                                 <p>{{number_format($product["price"])}}</p>
-                                <p>|</p>
-                                <p>Xoá</p>
                             </div>
                         </div>
                         <div style=" display: flex; gap: 1rem; margin-top: 0.5rem; align-items: center;">
-                            <?xml version="1.0" encoding="UTF-8"?><svg id="plus_quantity" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            <input style="width: 2rem; height: 2rem; text-align: center; outline: none; border: 1px solid lightgray;" type="number" id="quantity_add_to_cart" value="{{$product["quantity"]}}">
-                            <?xml version="1.0" encoding="UTF-8"?><svg id="minus_quantity" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M6 12H18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            <p style="font-size: 1.5rem">{{$product["quantity"]}}</p>
                         </div>
                     </div>
                 @endforeach

@@ -35,6 +35,7 @@ function AddNews() {
     data.append("slug", toSlug($("#title").val()));
     data.append("content", CKEDITOR.instances['content'].getData());
     data.append("image", $("#image-news")[0].files[0]);
+    data.append("banner", Number($("#isBanner").val()));
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/addnews",
@@ -56,6 +57,7 @@ function UpdateNews(id) {
     data.append("title", $("#title").val());
     data.append("slug", toSlug($("#title").val()));
     data.append("content", CKEDITOR.instances['content'].getData());
+    data.append("banner", Number($("#isBanner").val()));
     if($("#image-news").val() != "")
         data.append("image", $("#image-news")[0].files[0]);
     $.ajax({
@@ -71,4 +73,19 @@ function UpdateNews(id) {
             window.location.reload();
         }
     });
+}
+
+function DeleteNews(id) {
+    if (confirm("Bạn có thực sự muốn xoá") == true) {
+        $.ajax({
+            type: "post",
+            url: "http://localhost/shop/api/deletenews",
+            data: {"id": id},
+            dataType: "json",
+            success: function (response) {
+                alert(response);
+                window.location.href = "http://localhost/shop/manage/listnews/2?page=1";
+            }
+        });
+    }
 }

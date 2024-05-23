@@ -6,11 +6,13 @@ use App\Models\TypeProduct;
 use App\Models\TypeProductDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class TypeProductController extends Controller
 {
     public function add($request){
         try {
+            $user = Auth::user();
             $typeProduct = new TypeProduct();
             $typeProduct->name = $request->name;
             $typeProduct->slug = $request->slug;
@@ -18,8 +20,8 @@ class TypeProductController extends Controller
             $typeProduct->image = $request->file('image')->store('images');
             $typeProduct->icon = $request->file('icon')->store('images');
             $typeProduct->type_product_parent = $request->typeProductParent;
-            $typeProduct->creator = 1;
-            $typeProduct->updater = 1;
+            $typeProduct->creator = $user->id;
+            $typeProduct->updater = $user->id;
             $typeProduct->save();
             return json_encode("Thêm thành công");
         } catch (\Throwable $th) {
@@ -74,7 +76,10 @@ class TypeProductController extends Controller
 
     public function delete(Request $request){
         try {
+            $typeproduct = TypeProduct::where("id", $request->idTypeProduct)->get();
             TypeProductDetail::where("id_type", $request->idTypeProduct)->delete();
+            Storage::delete($typeproduct[0]->image);
+            Storage::delete($typeproduct[0]->icon);
             TypeProduct::where("id", $request->idTypeProduct)->delete();
             return "Xoá thành công";
         } catch (\Throwable $th) {
@@ -84,6 +89,7 @@ class TypeProductController extends Controller
 
     public function update(Request $request){
         try {
+            $user = Auth::user();
             $condition = array();
             if(isset($request->name) == true){
                 $condition["name"] = $request->name;
@@ -103,6 +109,7 @@ class TypeProductController extends Controller
                 Storage::delete($typeProduct[0]->icon);
                 $condition["icon"] = $request->file('icon')->store('images');
             }
+            $condition["updater"] = $user->id;
             TypeProduct::whereRaw("id = $request->idTypeProduct")->update($condition);
             return "Cập nhật thành công";
         } catch (\Throwable $th) {

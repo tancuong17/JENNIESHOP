@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Danh sách tin tức</title>
+    <title>Danh sách khách hàng</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/manage/index.css')}}">
@@ -43,21 +43,23 @@
                     <tr>
                         <th style="width: 5%; text-align: center">STT</th>
                         <th style="width: 10%">Mã</th>
-                        <th style="width: 55%">Tên</th>
-                        <th style="width: 20%">Ngày đăng</th>
+                        <th style="width: 35%">Tên</th>
+                        <th style="width: 25%">Email</th>
+                        <th style="width: 25%">Số điện thoại</th>
                     </tr>
-                    @foreach($news as $element)
-                    <tr onclick="LinkNews('{{$element['id']}}')">
+                    @foreach($customers as $customer)
+                    <tr>
                         <td style="text-align: center">{{ (Request::get('page') - 1) * $quantity + $loop->index + 1}}</td>
-                        <td><p>{{sprintf('%08d', $element['id'])}}</p></td>
-                        <td><p class="text-responsive">{{$element['title']}}</p></td>
-                        <td>{{date('H:i:s d-m-Y', strtotime($element['created_at']))}}</td>
+                        <td><p>{{sprintf('%08d', $customer['id'])}}</p></td>
+                        <td><p>{{$customer['name']}}</p></td>
+                        <td><p class="text-responsive">{{$customer['email']}}</p></td>
+                        <td>{{$customer['phonenumber']}}</td>
                     </tr>
                     @endforeach
                 </table>
             </div>
             <div class="table_bottom">
-                {!! $news->links('manage.paginator', ['quantity' => $quantity]) !!}
+                {!! $customers->links('manage.paginator', ['quantity' => $quantity]) !!}
             </div>
         </div>
     </div>

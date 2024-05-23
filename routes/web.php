@@ -6,6 +6,8 @@
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\OrderDetailController;
     use App\Http\Controllers\NewsController;
+    use App\Http\Controllers\UserController;
+    use App\Http\Controllers\CustomerController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -29,7 +31,7 @@
         return view('index', compact('products', 'images', 'prices', 'typeproducts', 'news'));
     });
 
-    Route::get('manage/login', function () {
+    Route::get('manage', function () {
         return view('manage.login');
     });
 
@@ -146,7 +148,8 @@
         $orderDetailController = new OrderDetailController();
         $order = $orderController->get($id);
         $orderdetail = $orderDetailController->gets($id);
-        return view('manage.detailorder', compact('quantity', 'order', 'orderdetail'));
+        $user = Auth::user();
+        return view('manage.detailorder', compact('quantity', 'order', 'orderdetail', 'user'));
     });
 
     Route::get('manage/addnews', function () {
@@ -180,5 +183,14 @@
         $newsController = new NewsController();
         $news = $newsController->get($id);
         return view('manage.detailnews', compact('quantity', 'news'));
+    });
+
+    Route::post('/logincheck', [UserController::class, 'loginCheck']);
+
+    Route::get('manage/listcustomer/{quantity}', function ($quantity) {
+        $customerController = new CustomerController();
+        $customers = $customerController->gets($quantity);
+        $quantity = $quantity;
+        return view('manage.listcustomer', compact('customers', 'quantity'));
     });
 ?>

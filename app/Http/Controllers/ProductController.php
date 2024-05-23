@@ -10,6 +10,7 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\TypeProductDetailController;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -22,6 +23,7 @@ class ProductController extends Controller
 
     public function add(Request $request){
         try {
+            $user = Auth::user();
             $product = new Product();
             $priceController = new PriceController();
             $imageController = new ImageController();
@@ -32,13 +34,13 @@ class ProductController extends Controller
             $product->slug = $this->convertData($request->slugProduct);
             $product->detail = $request->detailProduct;
             $product->status = 1;
-            $product->creator = 1;
-            $product->updater = 1;
+            $product->creator = $user->id;
+            $product->updater = $user->id;
             $product->save();
             $typeProductDetailController->add($request, $product->id);
             $colorController->add($request, $product->id);
             $imageController->add($request, $product->id);
-            $priceController->add(array("id_product" => $product->id, "price" => $request->priceProduct, "type_price" => 1, "creator" => 1));
+            $priceController->add(array("id_product" => $product->id, "price" => $request->priceProduct, "type_price" => 1, "creator" => $user->id));
             return json_encode("Thêm thành công");
         } catch (\Throwable $th) {
             return json_encode($th);
@@ -47,16 +49,17 @@ class ProductController extends Controller
 
     public function update(Request $request){
         try {
+            $user = Auth::user();
             if($request->column == "name"){
                 $condition = json_decode($request->data);
-                Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->name, "slug" => $condition[0]->slug]);
+                Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->name, "slug" => $condition[0]->slug, "updater" => $user->id]);
             }
             if($request->column == "sku_code"){
                 $condition = json_decode($request->data);
-                Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->sku_code]);
+                Product::whereRaw("id = $request->idProduct")->update([$request->column => $condition[0]->sku_code, "updater" => $user->id]);
             }
             if($request->column == "detail")
-                Product::whereRaw("id = $request->idProduct")->update([$request->column => $request->value]);
+                Product::whereRaw("id = $request->idProduct")->update([$request->column => $request->value, "updater" => $user->id]);
             return json_encode("Cập nhật thành công");
         } catch (\Throwable $th) {
             return json_encode($th);

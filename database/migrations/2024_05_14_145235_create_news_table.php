@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('slug')->nullable(false);
             $table->string('image')->nullable(false);
             $table->text('content')->nullable(false);
+            $table->integer('banner')->nullable(false);
+            $table->bigInteger('creator')->length(11)->nullable(false)->unsigned();
+            $table->bigInteger('updater')->length(11)->nullable(false)->unsigned();
+            $table->foreign('creator')->references('id')->on('users'); 
+            $table->foreign('updater')->references('id')->on('users'); 
             $table->timestamps();
         });
     }

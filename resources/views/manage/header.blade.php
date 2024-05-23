@@ -33,13 +33,16 @@
         @elseif(str_contains(Request::path(), 'manage/detailnews'))
             <li>Tin tức</li>
             <li>Chi tiết</li>
+        @elseif(str_contains(Request::path(), 'manage/listcustomer'))
+            <li>Khách hàng</li>
+            <li>Danh sách</li>
         @endif
     </ul>
     <div id="user_container">
         <div>
-            <p>Nguyễn Thị Lan</p>
+            <p>@auth{{ auth()->user()->name }}@endauth</p>
             <p>Nhân viên</p>
         </div>
-        <img id="user_logo" src="{{URL::asset('storage/app/images/user.jpg')}}" alt="image">
+        <img id="user_logo" src="{{env('URL_IMAGE')}}@auth{{ auth()->user()->image }}@endauth" alt="image">
     </div>
 </div>

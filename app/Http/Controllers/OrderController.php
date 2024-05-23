@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\CustomerController;
 
 class OrderController extends Controller
 {
@@ -12,6 +13,7 @@ class OrderController extends Controller
         try {
             $order = new Order();
             $orderDetailController = new OrderDetailController();
+            $customer = new CustomerController();
             $order->customer = $request->customer;
             $order->phonenumber = $request->phonenumber;
             $order->email = $request->email;
@@ -21,16 +23,19 @@ class OrderController extends Controller
             $order->address = $request->address;
             $order->status = $request->status;
             $order->payment = $request->payment;
+            $order->totalamount = $request->totalamount;
             $cart = json_decode($request->cart);
             $order->save();
             for ($i=0; $i < count($cart); $i++) { 
                 $orderDetailController->add($cart[$i], $order->id);
             }
+            $customer->add($request->customer, $request->phonenumber, $request->email);
             return "Đặt hàng thành công";
         } catch (\Throwable $th) {
             return json_encode($th);
         }
     }
+
     public function gets($quantity){
         try {
             $orders = Order::orderBy('id', 'desc')->paginate($quantity);
@@ -39,6 +44,7 @@ class OrderController extends Controller
             return json_encode($th);
         }
     }
+
     public function get($id){
         try {
             $order = Order::where("id", $id)->get();

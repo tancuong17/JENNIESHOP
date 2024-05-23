@@ -4,23 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
     public function add(Request $request)
     {
+        $user = Auth::user();
         $news = new News();
         $news->title = $request->title;
         $news->slug = $request->slug;
         $news->image = $request->file('image')->store('images');
         $news->content = $request->content;
+        $news->banner = $request->banner;
+        $news->creator = $user->id;
+        $news->updater = $user->id;
         $news->save();
         return "Thêm thành công";
     }
 
     public function gets($quantity){
         try {
-            $news = News::paginate($quantity);
+            $news = News::orderBy('id', 'desc')->paginate($quantity);
             return $news;
         } catch (\Throwable $th) {
             return json_encode($th);
@@ -38,6 +43,7 @@ class NewsController extends Controller
 
     public function update($request){
         try {
+            $user = Auth::user();
             $news = News::where("id", $request->id)->get();
             $condition = array();
             if($request->title != $news[0]->title){
@@ -50,10 +56,23 @@ class NewsController extends Controller
                 Storage::delete($news[0]->image);
                 $condition["image"] = $request->file('image')->store('images');
             }
+            $condition["banner"] = $request->banner;
+            $condition["updater"] = $user->id;
             News::whereRaw("id = $request->id")->update($condition);
             return "Cập nhật thành công";
         } catch (\Throwable $th) {
             return json_encode($th);
+        }
+    }
+
+    public function delete($request){
+        try {
+            $news = News::where("id", $request->id)->get();
+            Storage::delete($news[0]->image);
+            News::where("id", $request->id)->delete();
+            return "Xoá thành công";
+        } catch (\Throwable $th) {
+            return $th;
         }
     }
 }

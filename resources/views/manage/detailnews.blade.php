@@ -21,6 +21,11 @@
     <div id="main-container">
         @include('manage.header')
         <div id="add_news_container">
+            <p class="title">Chọn làm Banner</p>
+            <select class="input_info" id="isBanner">
+                <option value="0" @if($news[0]['banner'] == 0) selected @endif>Không</option>
+                <option value="1" @if($news[0]['banner'] == 1) selected @endif>Có</option>
+            </select>
             <p class="title">Tiêu đề</p>
             <input type="text" class="input_info" placeholder="..." id="title" value="{{$news[0]['title']}}">
             <p class="title">Ảnh đại diện</p>
@@ -32,7 +37,7 @@
             <textarea id="content">{!! $news[0]['content'] !!}</textarea>
             <button id="add_news_btn" onclick="UpdateNews({{$news[0]['id']}})">Cập nhật</button>
             <div class="button-container">
-                <button id="remove_product_btn">Xoá</button>
+                <button id="remove_product_btn" onclick="DeleteNews({{$news[0]['id']}})">Xoá</button>
             </div>
         </div>
     </div>

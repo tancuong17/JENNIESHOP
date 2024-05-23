@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('note')->nullable(true);
             $table->integer('status')->nullable(false);
             $table->integer('payment')->nullable(false);
+            $table->integer('totalamount')->nullable(false);
             $table->timestamps();
         });
     }

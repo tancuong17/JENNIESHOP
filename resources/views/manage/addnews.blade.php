@@ -21,6 +21,11 @@
     <div id="main-container">
         @include('manage.header')
         <div id="add_news_container">
+            <p class="title">Chọn làm Banner</p>
+            <select class="input_info" id="isBanner">
+                <option value="0">Không</option>
+                <option value="1">Có</option>
+            </select>
             <p class="title">Tiêu đề</p>
             <input type="text" class="input_info" placeholder="..." id="title">
             <p class="title">Ảnh đại diện</p>

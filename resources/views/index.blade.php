@@ -19,12 +19,19 @@
     @include('store.menu')
     <div class="swiper" id="banner_slider">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="{{env('URL_IMAGE')}}/images/slider_1.jpeg" alt="slider">
-          </div>
-          <div class="swiper-slide">
-            <img src="{{env('URL_IMAGE')}}/images/slider_2.jpg" alt="slider">
-          </div>
+            @if(count($news) == 0)
+                <a href="./" class="swiper-slide">
+                    <img src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="slider">
+                </a>
+            @else
+                @foreach($news as $data)
+                    @if($data["banner"] == 1)
+                        <a href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}" class="swiper-slide">
+                            <img src="{{env('URL_IMAGE')}}{{$data->image}}" alt="slider">
+                        </a>
+                    @endif
+                @endforeach
+            @endif
         </div>
         <div class="swiper-scrollbar"></div>
     </div>
@@ -36,7 +43,7 @@
             <a href="./loai-san-pham/{{ $typeproduct['slug'] }}/{{ $typeproduct['id'] }}?page=1">
                 <img class="catelory_image" src="{{env('URL_IMAGE')}}{{$typeproduct['icon']}}" alt="catelory">
                 <p>{{$typeproduct['name']}}</p>
-                <p>{{$typeproduct['detail']}}</p>
+                <p class="text-responsive">{{$typeproduct['detail']}}</p>
             </a>       
         @endforeach
     </div>
@@ -67,15 +74,17 @@
             </div>
         @endforeach
     </div>
-    <div class="title_text text_title_left">
-        <p>TIN TỨC</p>
-    </div>
+    @if(count($news) != 0)
+        <div class="title_text text_title_left">
+            <p>TIN TỨC</p>
+        </div>
+    @endif
     <div id="news_container">
         @foreach($news as $data)
             <a class="news" href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}">
                 <img src="{{env('URL_IMAGE')}}{{$data["image"]}}" alt="news">
                 <div class="news_text">
-                    <p>{{$data["title"]}}</p>
+                    <p class="text-responsive">{{$data["title"]}}</p>
                 </div>
             </a>
         @endforeach
