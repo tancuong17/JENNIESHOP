@@ -8,6 +8,7 @@
     use App\Http\Controllers\NewsController;
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\CustomerController;
+    use App\Http\Controllers\VoucherController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -192,5 +193,24 @@
         $customers = $customerController->gets($quantity);
         $quantity = $quantity;
         return view('manage.listcustomer', compact('customers', 'quantity'));
+    });
+
+    Route::get('manage/addvoucher', function () {
+        $quantity = 2;
+        return view('manage.addvoucher', compact('quantity'));
+    });
+
+    Route::get('manage/listvoucher/{quantity}', function () {
+        $quantity = 2;
+        $voucherController = new VoucherController();
+        $vouchers = $voucherController->gets($quantity);
+        return view('manage.listvoucher', compact('quantity', 'vouchers'));
+    });
+
+    Route::get('manage/detailvoucher/{id}', function ($id) {
+        $quantity = 2;
+        $voucherController = new VoucherController();
+        $voucher = $voucherController->get($id);
+        return view('manage.detailvoucher', compact('quantity', 'voucher'));
     });
 ?>

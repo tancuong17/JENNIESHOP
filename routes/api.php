@@ -12,6 +12,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -172,6 +173,26 @@ Route::post('deletenews', function (Request $request){
     try {
         $newsController = new NewsController();
         $result = $newsController->delete($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
+Route::post('addvoucher', function (Request $request){
+    try {
+        $voucherController = new VoucherController();
+        $result = $voucherController->add($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
+Route::post('updatevoucher', function (Request $request){
+    try {
+        $voucherController = new VoucherController();
+        $result = $voucherController->update($request);
         return json_encode($result);
     } catch (\Throwable $th) {
         return json_encode($th);

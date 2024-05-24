@@ -47,6 +47,7 @@ function AddTypeProduct() {
     data.append("typeProductParent", $("#type-product-choose").val());
     data.append("image", $("#image-banner-type-product")[0].files[0]);
     data.append("icon", $("#image-type-product")[0].files[0]);
+    data.append("user", $("#user-name").data("user"));
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/addtypeproduct",
@@ -69,6 +70,7 @@ function UpdateTypeProduct(idTypeProduct) {
     data.append("slug", toSlug($("#name").val()));
     data.append("detail", $("#detail").val());
     data.append("typeProductParent", $("#type-product-choose").val());
+    data.append("user", $("#user-name").data("user"));
     if($("#image-banner-type-product").val() != "")
         data.append("image", $("#image-banner-type-product")[0].files[0]);
     if($("#image-type-product").val() != "")

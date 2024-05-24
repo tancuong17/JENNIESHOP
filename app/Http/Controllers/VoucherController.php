@@ -4,82 +4,62 @@ namespace App\Http\Controllers;
 
 use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoucherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function add($request){
+        try {
+            $voucher = new Voucher();
+            $voucher->name = $request->name;
+            $voucher->code = $request->code;
+            $voucher->type = $request->type;
+            $voucher->value = $request->value;
+            $voucher->quantity = $request->quantity;
+            $voucher->start_date = $request->start_date;
+            $voucher->end_date = $request->end_date;
+            $voucher->creator = $request->user;
+            $voucher->updater = $request->user;
+            $voucher->save();
+            return "Thêm thành công";
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function update($request){
+        try {
+            Voucher::whereRaw("id = $request->id")->update([
+                "name" => $request->name,
+                "code" => $request->code,
+                "type" => $request->type,
+                "value" => $request->value,
+                "quantity" => $request->quantity,
+                "start_date" => $request->start_date,
+                "end_date" => $request->end_date,
+                "updater" => $request->user
+            ]);
+            return "Cập nhật thành công";
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function gets($quantity){
+        try {
+            $vouchers = Voucher::orderBy('id', 'desc')->paginate($quantity);
+            return $vouchers;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Voucher $voucher)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Voucher $voucher)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Voucher $voucher)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Voucher $voucher)
-    {
-        //
+    public function get($id){
+        try {
+            $voucher = Voucher::where("id", $id)->get();
+            return $voucher;
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
     }
 }

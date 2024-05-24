@@ -34,7 +34,7 @@
                         <div style="display: flex; justify-content: center; flex-direction: column;">
                             <p>{{$product["name"]}} - {{$product["color"]}} - {{$product["size"]}}</p>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <p>{{number_format($product["price"])}}</p>
+                                <p>{{number_format($product["price"])}}đ</p>
                             </div>
                         </div>
                         <div style=" display: flex; gap: 1rem; margin-top: 0.5rem; align-items: center;">
@@ -43,6 +43,7 @@
                     </div>
                 @endforeach
             </div>
+            <p class="title">Tổng tiền: {{number_format($order[0]['totalamount'])}}đ</p>
             <div class="button-container">
                 <button class="button-w100">Đã giao hàng</button>
             </div>

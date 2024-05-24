@@ -3,7 +3,7 @@
         <img id="logo_image" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="image">
     </div>
     <div id="menu_button_container">
-        <a href="http://localhost/shop/manage/listorder/2?page=1" class="menu_button @if (str_contains(Request::path(), 'manage/listorder')) menu_button_active @endif">   
+        <a href="http://localhost/shop/manage/listorder/2?page=1" class="menu_button @if (str_contains(Request::path(), 'manage/listorder') || str_contains(Request::path(), 'manage/detailorder')) menu_button_active @endif">   
             <div>
                 <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#212504"><path d="M8 14L16 14" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 10L10 10" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 18L12 18" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 3H6C4.89543 3 4 3.89543 4 5V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V5C20 3.89543 19.1046 3 18 3H14.5M10 3V1M10 3V5" stroke="#212504" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 <p>Đơn hàng</p>
@@ -61,15 +61,15 @@
                 </div>
                 <?xml version="1.0" encoding="UTF-8"?><svg class="chervon" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 15L12 9L18 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
-            <div class="sub_menu_container">
-                <div class="sub_menu_button">
+            <div class="sub_menu_container @if (Request::path() == 'manage/addvoucher' || str_contains(Request::path(), 'manage/listvoucher') || str_contains(Request::path(), 'manage/detailvoucher')) sub_menu_active @endif">
+                <a href="http://localhost/shop/manage/addvoucher" class="sub_menu_button @if (Request::path() == 'manage/addvoucher') menu_button_active @endif">
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p>Thêm</p>
-                </div>
-                <div class="sub_menu_button">
+                </a>
+                <a href="http://localhost/shop/manage/listvoucher/2?page=1" class="sub_menu_button @if (str_contains(Request::path(), 'manage/listvoucher') || str_contains(Request::path(), 'manage/detailvoucher')) menu_button_active @endif">
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 12H7.5H12H16.5H21M3 12V16.5M3 12V7.5M21 12V16.5M21 12V7.5M3 16.5V20.4C3 20.7314 3.26863 21 3.6 21H7.5H12H16.5H20.4C20.7314 21 21 20.7314 21 20.4V16.5M3 16.5H7.5H12H16.5H21M21 7.5V3.6C21 3.26863 20.7314 3 20.4 3H16.5H12H7.5H3.6C3.26863 3 3 3.26863 3 3.6V7.5M21 7.5H16.5H12H7.5H3" stroke="#000000" stroke-width="1.5"></path></svg>
                     <p>Danh sách</p>
-                </div>
+                </a>
             </div>
         </div>
         <div>

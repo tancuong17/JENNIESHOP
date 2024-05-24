@@ -10,15 +10,14 @@ class NewsController extends Controller
 {
     public function add(Request $request)
     {
-        $user = Auth::user();
         $news = new News();
         $news->title = $request->title;
         $news->slug = $request->slug;
         $news->image = $request->file('image')->store('images');
         $news->content = $request->content;
         $news->banner = $request->banner;
-        $news->creator = $user->id;
-        $news->updater = $user->id;
+        $news->creator = Auth::id();
+        $news->updater = Auth::id();
         $news->save();
         return "Thêm thành công";
     }
@@ -43,7 +42,6 @@ class NewsController extends Controller
 
     public function update($request){
         try {
-            $user = Auth::user();
             $news = News::where("id", $request->id)->get();
             $condition = array();
             if($request->title != $news[0]->title){
@@ -57,7 +55,7 @@ class NewsController extends Controller
                 $condition["image"] = $request->file('image')->store('images');
             }
             $condition["banner"] = $request->banner;
-            $condition["updater"] = $user->id;
+            $condition["updater"] = Auth::id();
             News::whereRaw("id = $request->id")->update($condition);
             return "Cập nhật thành công";
         } catch (\Throwable $th) {

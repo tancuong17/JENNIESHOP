@@ -20,8 +20,8 @@ class TypeProductController extends Controller
             $typeProduct->image = $request->file('image')->store('images');
             $typeProduct->icon = $request->file('icon')->store('images');
             $typeProduct->type_product_parent = $request->typeProductParent;
-            $typeProduct->creator = $user->id;
-            $typeProduct->updater = $user->id;
+            $typeProduct->creator = $request->user;
+            $typeProduct->updater = $request->user;
             $typeProduct->save();
             return json_encode("Thêm thành công");
         } catch (\Throwable $th) {
@@ -109,7 +109,7 @@ class TypeProductController extends Controller
                 Storage::delete($typeProduct[0]->icon);
                 $condition["icon"] = $request->file('icon')->store('images');
             }
-            $condition["updater"] = $user->id;
+            $condition["updater"] = $request->user;
             TypeProduct::whereRaw("id = $request->idTypeProduct")->update($condition);
             return "Cập nhật thành công";
         } catch (\Throwable $th) {

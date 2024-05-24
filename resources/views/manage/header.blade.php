@@ -36,11 +36,20 @@
         @elseif(str_contains(Request::path(), 'manage/listcustomer'))
             <li>Khách hàng</li>
             <li>Danh sách</li>
+        @elseif(str_contains(Request::path(), 'manage/addvoucher'))
+            <li>Voucher</li>
+            <li>Thêm</li>
+        @elseif(str_contains(Request::path(), 'manage/listvoucher'))
+            <li>Voucher</li>
+            <li>Danh sách</li>
+        @elseif(str_contains(Request::path(), 'manage/detailvoucher'))
+            <li>Voucher</li>
+            <li>Chi tiết</li>
         @endif
     </ul>
     <div id="user_container">
         <div>
-            <p>@auth{{ auth()->user()->name }}@endauth</p>
+            <p id="user-name" data-user="@auth{{ auth()->user()->id }}@endauth">@auth{{ auth()->user()->name }}@endauth</p>
             <p>Nhân viên</p>
         </div>
         <img id="user_logo" src="{{env('URL_IMAGE')}}@auth{{ auth()->user()->image }}@endauth" alt="image">

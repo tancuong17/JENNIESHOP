@@ -138,6 +138,7 @@ function AddProduct() {
     data.append("detailProduct", detailProduct);
     data.append("colors", JSON.stringify(colors.reverse()));
     data.append("typeProducts", JSON.stringify(typeProducts));
+    data.append("user", $("#user-name").data("user"));
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/addproduct",

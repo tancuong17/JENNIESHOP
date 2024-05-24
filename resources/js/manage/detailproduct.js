@@ -217,7 +217,7 @@ function PricePromotion(idProduct) {
         $.ajax({
             type: "post",
             url: "http://localhost/shop/api/pricepromotion",
-            data: {idProduct: idProduct, price: $("#price-promotion").val().replaceAll(",", ""), startDate: $("#start-date-price-promotion").val(), endDate: $("#end-date-price-promotion").val()},
+            data: {idProduct: idProduct, price: $("#price-promotion").val().replaceAll(",", ""), startDate: $("#start-date-price-promotion").val(), endDate: $("#end-date-price-promotion").val(), "user": $("#user-name").data("user")},
             dataType: "json",
             success: function (response) {
                 alert(response);
@@ -231,7 +231,7 @@ function UpdatePrice(idProduct) {
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/updateprice",
-        data: {idProduct: idProduct, price: $("#price").val().replaceAll(",", "")},
+        data: {idProduct: idProduct, price: $("#price").val().replaceAll(",", ""), "user": $("#user-name").data("user")},
         dataType: "json",
         success: function (response) {
             alert(response);

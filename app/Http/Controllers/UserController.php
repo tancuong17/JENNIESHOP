@@ -16,6 +16,7 @@ class UserController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($data)) {
+            $_SESSION["id"] = Auth::user()->id;
             return Redirect::to('/manage/listorder/2?page=1');
         } else {
             return Redirect::to('/manage');

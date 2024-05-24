@@ -36,6 +36,7 @@ function AddNews() {
     data.append("content", CKEDITOR.instances['content'].getData());
     data.append("image", $("#image-news")[0].files[0]);
     data.append("banner", Number($("#isBanner").val()));
+    data.append("user", $("#user-name").data("user"));
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/addnews",
@@ -58,6 +59,7 @@ function UpdateNews(id) {
     data.append("slug", toSlug($("#title").val()));
     data.append("content", CKEDITOR.instances['content'].getData());
     data.append("banner", Number($("#isBanner").val()));
+    data.append("user", $("#user-name").data("user"));
     if($("#image-news").val() != "")
         data.append("image", $("#image-news")[0].files[0]);
     $.ajax({

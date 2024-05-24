@@ -1,0 +1,62 @@
+#add_voucher_container {
+    width: 100%;
+    position: relative;
+    height: calc(100vh - 5.5rem);
+    background-color: white;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.title {
+    margin: 0.5rem 0;
+}
+
+.input_info {
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    border: 1px solid whitesmoke;
+}
+
+#add_voucher_btn {
+    margin-top: 0.5rem;
+    width: 100%;
+    border: 1px solid black;
+    background-color: black;
+    padding: 0.5rem 0;
+    outline: none;
+    color: white;
+}
+
+#image-voucher-container{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    min-height: 10rem;
+    height: auto;
+    border: 1px dashed whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-voucher-upload {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#image{
+    display: none;
+}
+
+#remove_product_btn{
+    margin-top: 0.5rem;
+    width: 100%;
+    border: 1px solid rgb(173, 10, 10);
+    background-color: rgb(173, 10, 10);
+    padding: 0.5rem 0;
+    outline: none;
+    color: white;
+}
