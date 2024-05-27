@@ -4,6 +4,7 @@ table {
     width: 100%;
     border: none;
     table-layout: auto;
+    position: relative;
 }
 
 td {

@@ -281,7 +281,7 @@ function UpdateProduct(idProduct, column, e) {
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/updateproduct",
-        data: {"idProduct": idProduct, "column": column, "data": JSON.stringify(data)},
+        data: {"idProduct": idProduct, "column": column, "data": JSON.stringify(data), "user": $("#user-name").data("user")},
         dataType: "json",
         success: function (response) {
             alert(response);
@@ -294,7 +294,7 @@ function UpdateDetailProduct(idProduct) {
     $.ajax({
         type: "post",
         url: "http://localhost/shop/api/updateproduct",
-        data: {"idProduct": idProduct, "column": "detail", "value": CKEDITOR.instances['detail'].getData()},
+        data: {"idProduct": idProduct, "column": "detail", "value": CKEDITOR.instances['detail'].getData(), "user": $("#user-name").data("user")},
         dataType: "json",
         success: function (response) {
             alert(response);

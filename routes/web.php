@@ -9,6 +9,8 @@
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\CustomerController;
     use App\Http\Controllers\VoucherController;
+    use Illuminate\Support\Facades\Redirect;
+    use Illuminate\Support\Facades\Auth;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -33,93 +35,136 @@
     });
 
     Route::get('manage', function () {
-        return view('manage.login');
+        if(Auth::check()){
+            return Redirect::to('/manage/listorder/2?page=1');
+        }
+        else{
+            return view('manage.login');
+        }
     });
 
     Route::get('dang-nhap', function () {
         return view('store.login');
     });
 
-    Route::get('manage/dashboard', function () {
-        return view('manage.dashboard');
-    });
-
     Route::get('manage/addproduct', function () {
-        $typeProductController = new TypeProductController();
-        $typeproducts = $typeProductController->getAll();
-        $quantity = 2;
-        return view('manage.addproduct', compact('quantity', 'typeproducts'));
+        if(Auth::check()){
+            $typeProductController = new TypeProductController();
+            $typeproducts = $typeProductController->getAll();
+            $quantity = 2;
+            return view('manage.addproduct', compact('quantity', 'typeproducts'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/addtypeproduct', function () {
-        $typeProductController = new TypeProductController();
-        $typeproducts = $typeProductController->getAll();
-        $quantity = 2;
-        return view('manage.addtypeproduct', compact('typeproducts', 'quantity'));
+        if(Auth::check()){
+            $typeProductController = new TypeProductController();
+            $typeproducts = $typeProductController->getAll();
+            $quantity = 2;
+            return view('manage.addtypeproduct', compact('typeproducts', 'quantity'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/detailtypeproduct/{id}', function ($id) {
-        $typeProductController = new TypeProductController();
-        $typeproductdetail = $typeProductController->getById($id);
-        $typeproducts = $typeProductController->getAll();
-        $quantity = 2;
-        return view('manage.detailtypeproduct', compact('typeproductdetail', 'quantity', 'typeproducts'));
+        if(Auth::check()){
+            $typeProductController = new TypeProductController();
+            $typeproductdetail = $typeProductController->getById($id);
+            $typeproducts = $typeProductController->getAll();
+            $quantity = 2;
+            return view('manage.detailtypeproduct', compact('typeproductdetail', 'quantity', 'typeproducts'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/detailproduct/{id}', function ($id) {
-        $typeProductController = new TypeProductController();
-        $typeproducts = $typeProductController->getAll();
-        $productController = new ProductController();
-        $data = $productController->get("id", $id);
-        $product = $data["product"];
-        $images = $data["images"];
-        $colors = $data["colors"];
-        $sizes = $data["sizes"];
-        $prices = $data["prices"];
-        $types = $data["types"];
-        $quantity = 2;
-        return view('manage.detailproduct',  compact('product', 'images', 'colors', 'sizes', 'prices', 'quantity', 'typeproducts', 'types'));
+        if(Auth::check()){
+            $typeProductController = new TypeProductController();
+            $typeproducts = $typeProductController->getAll();
+            $productController = new ProductController();
+            $data = $productController->get("id", $id);
+            $product = $data["product"];
+            $images = $data["images"];
+            $colors = $data["colors"];
+            $sizes = $data["sizes"];
+            $prices = $data["prices"];
+            $types = $data["types"];
+            $quantity = 2;
+            return view('manage.detailproduct',  compact('product', 'images', 'colors', 'sizes', 'prices', 'quantity', 'typeproducts', 'types'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/listproduct/{quantity}', function ($quantity) {
-        $productController = new ProductController();
-        $data = $productController->gets($quantity);
-        $products = $data["products"];
-        $images = $data["images"];
-        $prices = $data["prices"];
-        $quantity = $quantity;
-        return view('manage.listproduct', compact('products', 'images', 'quantity', 'prices'));
+        if(Auth::check()){
+            $productController = new ProductController();
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+            $data = $productController->gets($quantity, $keyword);
+            $products = $data["products"];
+            $images = $data["images"];
+            $prices = $data["prices"];
+            $quantity = $quantity;
+            return view('manage.listproduct', compact('products', 'images', 'quantity', 'prices', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/listtypeproduct/{quantity}', function ($quantity) {
-        $typeProductController = new TypeProductController();
-        $typeproducts = $typeProductController->getAllWithPaginate($quantity);
-        $quantity = $quantity;
-        return view('manage.listtypeproduct', compact('typeproducts', 'quantity'));
+        if(Auth::check()){
+            $typeProductController = new TypeProductController();
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+            $typeproducts = $typeProductController->getAllWithPaginate($quantity, $keyword);
+            $quantity = $quantity;
+            return view('manage.listtypeproduct', compact('typeproducts', 'quantity', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('chi-tiet-san-pham/{slug}', function ($slug) {
-        $productController = new ProductController();
-        $data = $productController->get("slug", $slug);
-        $product = $data["product"];
-        $images = $data["images"];
-        $colors = $data["colors"];
-        $sizes = $data["sizes"];
-        $prices = $data["prices"];
-        return view('store.product', compact('product', 'images', 'colors', 'sizes', 'prices'));
+        if(Auth::check()){
+            $productController = new ProductController();
+            $data = $productController->get("slug", $slug);
+            $product = $data["product"];
+            $images = $data["images"];
+            $colors = $data["colors"];
+            $sizes = $data["sizes"];
+            $prices = $data["prices"];
+            return view('store.product', compact('product', 'images', 'colors', 'sizes', 'prices'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('loai-san-pham/{slug}/{id}', function ($slug, $id) {
-        $typeProductDetailController = new TypeProductDetailController();
-        $typeProductController = new TypeProductController();
-        $data = $typeProductDetailController->getProducts($id);
-        $typeProductParents = $typeProductController->getByTypeProductParent($id);
-        $products = $data["products"];
-        $images = $data["images"];
-        $prices = $data["prices"];
-        $typeProductDetails = $data["typeProductDetails"];
-        $typeProduct = $data["typeProduct"];
-        return view('store.typeproducts', compact('typeProductDetails', 'products', 'images', 'prices', 'typeProduct', 'typeProductParents'));
+        if(Auth::check()){
+            $typeProductDetailController = new TypeProductDetailController();
+            $typeProductController = new TypeProductController();
+            $data = $typeProductDetailController->getProducts($id);
+            $typeProductParents = $typeProductController->getByTypeProductParent($id);
+            $products = $data["products"];
+            $images = $data["images"];
+            $prices = $data["prices"];
+            $typeProductDetails = $data["typeProductDetails"];
+            $typeProduct = $data["typeProduct"];
+            return view('store.typeproducts', compact('typeProductDetails', 'products', 'images', 'prices', 'typeProduct', 'typeProductParents'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('gio-hang', function () {
@@ -127,41 +172,67 @@
     });
 
     Route::get('tim-kiem/{keyword}', function ($keyword) {
-        $productController = new ProductController();
-        $data = $productController->search($keyword, 8);
-        $products = $data["products"];
-        $images = $data["images"];
-        $prices = $data["prices"];
-        $keyword = $keyword;
-        return view('store.search', compact('products', 'images', 'prices', 'keyword'));
+        if(Auth::check()){
+            $productController = new ProductController();
+            $data = $productController->search($keyword, 8);
+            $products = $data["products"];
+            $images = $data["images"];
+            $prices = $data["prices"];
+            $keyword = $keyword;
+            return view('store.search', compact('products', 'images', 'prices', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/listorder/{quantity}', function ($quantity) {
-        $orderController = new OrderController();
-        $orders = $orderController->gets($quantity);
-        $quantity = $quantity;
-        return view('manage.listorder', compact('orders', 'quantity'));
+        if(Auth::check()){
+            $orderController = new OrderController();
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+            $orders = $orderController->gets($quantity, $keyword);
+            $quantity = $quantity;
+            return view('manage.listorder', compact('orders', 'quantity', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/detailorder/{id}', function ($id) {
-        $quantity = 2;
-        $orderController = new OrderController();
-        $orderDetailController = new OrderDetailController();
-        $order = $orderController->get($id);
-        $orderdetail = $orderDetailController->gets($id);
-        $user = Auth::user();
-        return view('manage.detailorder', compact('quantity', 'order', 'orderdetail', 'user'));
+        if(Auth::check()){
+            $quantity = 2;
+            $orderController = new OrderController();
+            $orderDetailController = new OrderDetailController();
+            $order = $orderController->get($id);
+            $orderdetail = $orderDetailController->gets($id);
+            $user = Auth::user();
+            return view('manage.detailorder', compact('quantity', 'order', 'orderdetail', 'user'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/addnews', function () {
-        $quantity = 2;
-        return view('manage.addnews', compact('quantity'));
+        if(Auth::check()){
+            $quantity = 2;
+            return view('manage.addnews', compact('quantity'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('tin-tuc/{slug}/{id}', function ($slug, $id) {
-        $newsController = new NewsController();
-        $news = $newsController->get($id);
-        return view('store.news', compact('news'));
+        if(Auth::check()){
+            $newsController = new NewsController();
+            $news = $newsController->get($id);
+            return view('store.news', compact('news'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::post('/flmngr', function () {
@@ -173,44 +244,79 @@
     });
 
     Route::get('manage/listnews/{quantity}', function ($quantity) {
-        $quantity = $quantity;
-        $newsController = new NewsController();
-        $news = $newsController->gets(3);
-        return view('manage.listnews', compact('quantity', 'news'));
+        if(Auth::check()){
+            $quantity = $quantity;
+            $newsController = new NewsController();
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+            $news = $newsController->gets($quantity, $keyword);
+            return view('manage.listnews', compact('quantity', 'news', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/detailnews/{id}', function ($id) {
-        $quantity = 2;
-        $newsController = new NewsController();
-        $news = $newsController->get($id);
-        return view('manage.detailnews', compact('quantity', 'news'));
+        if(Auth::check()){
+            $quantity = 2;
+            $newsController = new NewsController();
+            $news = $newsController->get($id);
+            return view('manage.detailnews', compact('quantity', 'news'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::post('/logincheck', [UserController::class, 'loginCheck']);
 
+    Route::get('/manage/logout', [UserController::class, 'logout']);
+
     Route::get('manage/listcustomer/{quantity}', function ($quantity) {
-        $customerController = new CustomerController();
-        $customers = $customerController->gets($quantity);
-        $quantity = $quantity;
-        return view('manage.listcustomer', compact('customers', 'quantity'));
+        if(Auth::check()){
+            $customerController = new CustomerController();
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+            $customers = $customerController->gets($quantity, $keyword);
+            $quantity = $quantity;
+            return view('manage.listcustomer', compact('customers', 'quantity', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/addvoucher', function () {
-        $quantity = 2;
-        return view('manage.addvoucher', compact('quantity'));
+        if(Auth::check()){
+            $quantity = 2;
+            return view('manage.addvoucher', compact('quantity'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/listvoucher/{quantity}', function () {
-        $quantity = 2;
-        $voucherController = new VoucherController();
-        $vouchers = $voucherController->gets($quantity);
-        return view('manage.listvoucher', compact('quantity', 'vouchers'));
+        if(Auth::check()){
+            $quantity = 2;
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+            $voucherController = new VoucherController();
+            $vouchers = $voucherController->gets($quantity, $keyword);
+            return view('manage.listvoucher', compact('quantity', 'vouchers', 'keyword'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 
     Route::get('manage/detailvoucher/{id}', function ($id) {
-        $quantity = 2;
-        $voucherController = new VoucherController();
-        $voucher = $voucherController->get($id);
-        return view('manage.detailvoucher', compact('quantity', 'voucher'));
+        if(Auth::check()){
+            $quantity = 2;
+            $voucherController = new VoucherController();
+            $voucher = $voucherController->get($id);
+            return view('manage.detailvoucher', compact('quantity', 'voucher'));
+        }
+        else{
+            return Redirect::to('/manage');
+        }
     });
 ?>

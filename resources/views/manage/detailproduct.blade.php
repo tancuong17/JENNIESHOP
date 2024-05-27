@@ -144,6 +144,7 @@
 <script src="{{URL::asset('public/assets/vendor/ckeditor4/ckeditor.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/menu.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/detailproduct.js')}}"></script>
+<script src="{{URL::asset('resources/js/manage/index.js')}}"></script>
 <script>
     CKEDITOR.config.allowedContent = true;
 </script>

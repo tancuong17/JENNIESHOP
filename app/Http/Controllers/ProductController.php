@@ -83,13 +83,16 @@ class ProductController extends Controller
         }
     }
 
-    public function gets($quantity){
+    public function gets($quantity, $keyword){
         try {
             $images = array();
             $prices = array();
             $imageController = new ImageController();
             $priceController = new PriceController();
-            $products = Product::orderBy('id', 'desc')->paginate($quantity);
+            if($keyword == "")
+                $products = Product::orderBy('id', 'desc')->paginate($quantity);
+            else
+                $products = Product::where("id", $keyword)->orderBy('id', 'desc')->paginate($quantity);
             foreach ($products as $product) {
                 array_push($images, $imageController->get($product->id));
                 array_push($prices, $priceController->get($product->id));

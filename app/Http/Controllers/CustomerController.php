@@ -27,9 +27,12 @@ class CustomerController extends Controller
         }
     }
 
-    public function gets($quantity){
+    public function gets($quantity, $keyword){
         try {
-            $customers = Customer::orderBy('id', 'desc')->paginate($quantity);
+            if($keyword == "")
+                $customers = Customer::orderBy('id', 'desc')->paginate($quantity);
+            else
+                $customers = Customer::where("phonenumber", $keyword)->orderBy('id', 'desc')->paginate($quantity);
             return $customers;
         } catch (\Throwable $th) {
             return json_encode($th);

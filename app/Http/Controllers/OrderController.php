@@ -36,9 +36,12 @@ class OrderController extends Controller
         }
     }
 
-    public function gets($quantity){
+    public function gets($quantity, $keyword){
         try {
-            $orders = Order::orderBy('id', 'desc')->paginate($quantity);
+            if($keyword == "")
+                $orders = Order::orderBy('id', 'desc')->paginate($quantity);
+            else
+                $orders = Order::where("id", $keyword)->orderBy('id', 'desc')->paginate($quantity);
             return $orders;
         } catch (\Throwable $th) {
             return json_encode($th);

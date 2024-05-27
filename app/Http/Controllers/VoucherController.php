@@ -45,9 +45,12 @@ class VoucherController extends Controller
         }
     }
 
-    public function gets($quantity){
+    public function gets($quantity, $keyword){
         try {
-            $vouchers = Voucher::orderBy('id', 'desc')->paginate($quantity);
+            if($keyword == "")
+                $vouchers = Voucher::orderBy('id', 'desc')->paginate($quantity);
+            else
+                $vouchers = Voucher::where('id', $keyword)->orderBy('id', 'desc')->paginate($quantity);
             return $vouchers;
         } catch (\Throwable $th) {
             return json_encode($th);

@@ -22,4 +22,10 @@ class UserController extends Controller
             return Redirect::to('/manage');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return Redirect::to('/manage');
+    }
 }

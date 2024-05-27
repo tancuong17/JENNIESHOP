@@ -38,9 +38,12 @@ class TypeProductController extends Controller
         }
     }
 
-    public function getAllWithPaginate($quantity){
+    public function getAllWithPaginate($quantity, $keyword){
         try {
-            $typeproducts = TypeProduct::orderBy('id', 'desc')->paginate($quantity);
+            if($keyword == "")
+                $typeproducts = TypeProduct::orderBy('id', 'desc')->paginate($quantity);
+            else
+                $typeproducts = TypeProduct::where("id", $keyword)->orderBy('id', 'desc')->paginate($quantity);
             return $typeproducts;
         } catch (\Throwable $th) {
             return json_encode($th);

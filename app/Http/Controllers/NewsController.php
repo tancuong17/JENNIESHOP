@@ -22,9 +22,12 @@ class NewsController extends Controller
         return "Thêm thành công";
     }
 
-    public function gets($quantity){
+    public function gets($quantity, $keyword){
         try {
-            $news = News::orderBy('id', 'desc')->paginate($quantity);
+            if($keyword == "")
+                $news = News::orderBy('id', 'desc')->paginate($quantity);
+            else
+                $news = News::where("id", $keyword)->orderBy('id', 'desc')->paginate($quantity);
             return $news;
         } catch (\Throwable $th) {
             return json_encode($th);

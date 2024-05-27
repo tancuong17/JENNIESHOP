@@ -52,4 +52,5 @@
 <script src="{{URL::asset('public/assets/vendor/ckeditor4/ckeditor.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/menu.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/voucher.js')}}"></script>
+<script src="{{URL::asset('resources/js/manage/index.js')}}"></script>
 </html>
