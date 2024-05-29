@@ -58,7 +58,7 @@ class NewsController extends Controller
                 $condition["image"] = $request->file('image')->store('images');
             }
             $condition["banner"] = $request->banner;
-            $condition["updater"] = Auth::id();
+            $condition["updater"] = $request->user;
             News::whereRaw("id = $request->id")->update($condition);
             return "Cập nhật thành công";
         } catch (\Throwable $th) {

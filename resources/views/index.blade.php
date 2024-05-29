@@ -17,13 +17,9 @@
 <body>
     @include('store.header')
     @include('store.menu')
-    <div class="swiper" id="banner_slider">
-        <div class="swiper-wrapper">
-            @if(count($news) == 0)
-                <a href="./" class="swiper-slide">
-                    <img src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="slider">
-                </a>
-            @else
+    @if(count($news) != 0)
+        <div class="swiper" id="banner_slider">
+            <div class="swiper-wrapper">
                 @foreach($news as $data)
                     @if($data["banner"] == 1)
                         <a href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}" class="swiper-slide">
@@ -31,11 +27,11 @@
                         </a>
                     @endif
                 @endforeach
-            @endif
+            </div>
+            <div class="swiper-scrollbar"></div>
         </div>
-        <div class="swiper-scrollbar"></div>
-    </div>
-    <div class="title_text line text_title_center">
+    @endif
+    <div class="title_text line text_title_center" @if(count($news) == 0) style="margin-top: 8rem" @endif>
         <p>BẠN ĐANG TÌM KIẾM?</p>
     </div>
     <div id="catelory_container">

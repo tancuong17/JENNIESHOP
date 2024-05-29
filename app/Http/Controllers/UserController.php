@@ -28,4 +28,9 @@ class UserController extends Controller
         Auth::logout();
         return Redirect::to('/manage');
     }
+
+    public function updateQuantityRow($request)
+    {
+        User::where("id", $request->id)->update(["tablerow" => $request->tablerow]);
+    }
 }

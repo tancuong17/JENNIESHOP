@@ -13,6 +13,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -95,6 +96,17 @@ Route::post('addorder', function (Request $request){
         return json_encode($th);
     }
 });
+
+Route::post('updateorder', function (Request $request){
+    try {
+        $orderController = new OrderController();
+        $result = $orderController->update($request);
+        return json_encode($result);
+    } catch (\Throwable $th) {
+        return json_encode($th);
+    }
+});
+
 
 Route::get('getsize/{idColor}', function ($idColor){
     $sizeController = new SizeController();
@@ -197,4 +209,10 @@ Route::post('updatevoucher', function (Request $request){
     } catch (\Throwable $th) {
         return json_encode($th);
     }
+});
+
+Route::post('updatequantityrow', function (Request $request){
+    $userController = new UserController();
+    $userController->updateQuantityRow($request);
+    return 0;
 });

@@ -56,4 +56,13 @@ class OrderController extends Controller
             return json_encode($th);
         }
     }
+
+    public function update($request){
+        try {
+            Order::whereRaw("id = $request->id")->update(["status" => $request->status, "updater" => $request->user]);
+            return "Cập nhật thành công";
+        } catch (\Throwable $th) {
+            return json_encode($th);
+        }
+    }
 }

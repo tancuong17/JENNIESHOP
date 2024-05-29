@@ -25,10 +25,10 @@
             <div class="table_header">
                 <div>
                     <p>Số dòng hiển thị:</p>
-                    <select>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
+                    <select onchange="ChangeQuantityRow(this)">
+                        <option @if($quantity == 10) selected @endif>10</option>
+                        <option @if($quantity == 20) selected @endif>20</option>
+                        <option @if($quantity == 30) selected @endif>30</option>
                     </select>
                 </div>
                 <div>

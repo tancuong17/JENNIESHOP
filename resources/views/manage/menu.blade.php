@@ -9,7 +9,7 @@
                 <p>Đơn hàng</p>
             </div>
         </a>
-        <a  href="http://localhost/shop/manage/listcustomer/2?page=1" class="menu_button @if (str_contains(Request::path(), 'manage/listcustomer')) menu_button_active @endif">
+        <a href="http://localhost/shop/manage/listcustomer/2?page=1" class="menu_button @if (str_contains(Request::path(), 'manage/listcustomer')) menu_button_active @endif">
             <div>
                 <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path><path d="M13 14V14C13 11.2386 15.2386 9 18 9V9C20.7614 9 23 11.2386 23 14V14.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path><path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18 9C19.6569 9 21 7.65685 21 6C21 4.34315 19.6569 3 18 3C16.3431 3 15 4.34315 15 6C15 7.65685 16.3431 9 18 9Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 <p>Khách hàng</p>
@@ -66,7 +66,7 @@
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p>Thêm</p>
                 </a>
-                <a href="http://localhost/shop/manage/listvoucher/2?page=1" class="sub_menu_button @if (str_contains(Request::path(), 'manage/listvoucher') || str_contains(Request::path(), 'manage/detailvoucher')) menu_button_active @endif">
+                <a href="http://localhost/shop/manage/listvoucher/{{ $quantity }}?page=1" class="sub_menu_button @if (str_contains(Request::path(), 'manage/listvoucher') || str_contains(Request::path(), 'manage/detailvoucher')) menu_button_active @endif">
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 12H7.5H12H16.5H21M3 12V16.5M3 12V7.5M21 12V16.5M21 12V7.5M3 16.5V20.4C3 20.7314 3.26863 21 3.6 21H7.5H12H16.5H20.4C20.7314 21 21 20.7314 21 20.4V16.5M3 16.5H7.5H12H16.5H21M21 7.5V3.6C21 3.26863 20.7314 3 20.4 3H16.5H12H7.5H3.6C3.26863 3 3 3.26863 3 3.6V7.5M21 7.5H16.5H12H7.5H3" stroke="#000000" stroke-width="1.5"></path></svg>
                     <p>Danh sách</p>
                 </a>
@@ -85,7 +85,7 @@
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p>Thêm</p>
                 </a>
-                <a href="http://localhost/shop/manage/listnews/2?page=1" class="sub_menu_button @if (str_contains(Request::path(), 'manage/listnews') || str_contains(Request::path(), 'manage/detailnews')) menu_button_active @endif">
+                <a href="http://localhost/shop/manage/listnews/{{ $quantity }}?page=1" class="sub_menu_button @if (str_contains(Request::path(), 'manage/listnews') || str_contains(Request::path(), 'manage/detailnews')) menu_button_active @endif">
                     <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 12H7.5H12H16.5H21M3 12V16.5M3 12V7.5M21 12V16.5M21 12V7.5M3 16.5V20.4C3 20.7314 3.26863 21 3.6 21H7.5H12H16.5H20.4C20.7314 21 21 20.7314 21 20.4V16.5M3 16.5H7.5H12H16.5H21M21 7.5V3.6C21 3.26863 20.7314 3 20.4 3H16.5H12H7.5H3.6C3.26863 3 3 3.26863 3 3.6V7.5M21 7.5H16.5H12H7.5H3" stroke="#000000" stroke-width="1.5"></path></svg>
                     <p>Danh sách</p>
                 </a>

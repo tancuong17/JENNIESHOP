@@ -25,10 +25,10 @@
             <div class="table_header">
                 <div>
                     <p>Số dòng hiển thị:</p>
-                    <select>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
+                    <select onchange="ChangeQuantityRow(this)">
+                        <option @if($quantity == 10) selected @endif>10</option>
+                        <option @if($quantity == 20) selected @endif>20</option>
+                        <option @if($quantity == 30) selected @endif>30</option>
                     </select>
                 </div>
                 <div>
@@ -59,8 +59,12 @@
                         <td>
                             @if($order['status'] == 0)
                                 Chưa giao hàng
-                            @else
+                            @elseif($order['status'] == 1)
+                                Đang giao hàng
+                            @elseif($order['status'] == 2)
                                 Đã giao hàng
+                            @elseif($order['status'] == 3)
+                                Đã huỷ
                             @endif
                         </td>
                     </tr>
@@ -75,6 +79,6 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{URL::asset('resources/js/manage/menu.js')}}"></script>
-<script src="{{URL::asset('resources/js/manage/listorder.js')}}"></script>
+<script src="{{URL::asset('resources/js/manage/order.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/index.js')}}"></script>
 </html>

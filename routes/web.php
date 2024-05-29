@@ -26,8 +26,8 @@
         $typeProductController = new TypeProductController();
         $newsController = new NewsController();
         $typeproducts = $typeProductController->getByCondition("type_product_parent", 0);
-        $data = $productController->gets(8);
-        $news = $newsController->gets(3);
+        $data = $productController->gets(8, "");
+        $news = $newsController->gets(3, "");
         $products = $data["products"];
         $images = $data["images"];
         $prices = $data["prices"];
@@ -51,7 +51,7 @@
         if(Auth::check()){
             $typeProductController = new TypeProductController();
             $typeproducts = $typeProductController->getAll();
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             return view('manage.addproduct', compact('quantity', 'typeproducts'));
         }
         else{
@@ -63,7 +63,7 @@
         if(Auth::check()){
             $typeProductController = new TypeProductController();
             $typeproducts = $typeProductController->getAll();
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             return view('manage.addtypeproduct', compact('typeproducts', 'quantity'));
         }
         else{
@@ -76,7 +76,7 @@
             $typeProductController = new TypeProductController();
             $typeproductdetail = $typeProductController->getById($id);
             $typeproducts = $typeProductController->getAll();
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             return view('manage.detailtypeproduct', compact('typeproductdetail', 'quantity', 'typeproducts'));
         }
         else{
@@ -96,7 +96,7 @@
             $sizes = $data["sizes"];
             $prices = $data["prices"];
             $types = $data["types"];
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             return view('manage.detailproduct',  compact('product', 'images', 'colors', 'sizes', 'prices', 'quantity', 'typeproducts', 'types'));
         }
         else{
@@ -112,7 +112,7 @@
             $products = $data["products"];
             $images = $data["images"];
             $prices = $data["prices"];
-            $quantity = $quantity;
+            $quantity = Auth::user()->tablerow;
             return view('manage.listproduct', compact('products', 'images', 'quantity', 'prices', 'keyword'));
         }
         else{
@@ -125,7 +125,7 @@
             $typeProductController = new TypeProductController();
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
             $typeproducts = $typeProductController->getAllWithPaginate($quantity, $keyword);
-            $quantity = $quantity;
+            $quantity = Auth::user()->tablerow;
             return view('manage.listtypeproduct', compact('typeproducts', 'quantity', 'keyword'));
         }
         else{
@@ -191,7 +191,7 @@
             $orderController = new OrderController();
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
             $orders = $orderController->gets($quantity, $keyword);
-            $quantity = $quantity;
+            $quantity = Auth::user()->tablerow;
             return view('manage.listorder', compact('orders', 'quantity', 'keyword'));
         }
         else{
@@ -201,7 +201,7 @@
 
     Route::get('manage/detailorder/{id}', function ($id) {
         if(Auth::check()){
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             $orderController = new OrderController();
             $orderDetailController = new OrderDetailController();
             $order = $orderController->get($id);
@@ -216,7 +216,7 @@
 
     Route::get('manage/addnews', function () {
         if(Auth::check()){
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             return view('manage.addnews', compact('quantity'));
         }
         else{
@@ -245,10 +245,10 @@
 
     Route::get('manage/listnews/{quantity}', function ($quantity) {
         if(Auth::check()){
-            $quantity = $quantity;
             $newsController = new NewsController();
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
             $news = $newsController->gets($quantity, $keyword);
+            $quantity = Auth::user()->tablerow;
             return view('manage.listnews', compact('quantity', 'news', 'keyword'));
         }
         else{
@@ -258,7 +258,7 @@
 
     Route::get('manage/detailnews/{id}', function ($id) {
         if(Auth::check()){
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             $newsController = new NewsController();
             $news = $newsController->get($id);
             return view('manage.detailnews', compact('quantity', 'news'));
@@ -277,7 +277,7 @@
             $customerController = new CustomerController();
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
             $customers = $customerController->gets($quantity, $keyword);
-            $quantity = $quantity;
+            $quantity = Auth::user()->tablerow;
             return view('manage.listcustomer', compact('customers', 'quantity', 'keyword'));
         }
         else{
@@ -295,12 +295,12 @@
         }
     });
 
-    Route::get('manage/listvoucher/{quantity}', function () {
+    Route::get('manage/listvoucher/{quantity}', function ($quantity) {
         if(Auth::check()){
-            $quantity = 2;
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
             $voucherController = new VoucherController();
             $vouchers = $voucherController->gets($quantity, $keyword);
+            $quantity = Auth::user()->tablerow;
             return view('manage.listvoucher', compact('quantity', 'vouchers', 'keyword'));
         }
         else{
@@ -310,7 +310,7 @@
 
     Route::get('manage/detailvoucher/{id}', function ($id) {
         if(Auth::check()){
-            $quantity = 2;
+            $quantity = Auth::user()->tablerow;
             $voucherController = new VoucherController();
             $voucher = $voucherController->get($id);
             return view('manage.detailvoucher', compact('quantity', 'voucher'));

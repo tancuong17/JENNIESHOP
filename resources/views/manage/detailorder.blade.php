@@ -43,13 +43,35 @@
                     </div>
                 @endforeach
             </div>
-            <p class="title">Tổng tiền: {{number_format($order[0]['totalamount'])}}đ</p>
-            <div class="button-container">
-                <button class="button-w100">Đã giao hàng</button>
+            <div style="display: flex; justify-content: space-between; align-items: center">
+                <p class="title">Tổng tiền: {{number_format($order[0]['totalamount'])}}đ</p>
+                <p class="title">Trạng thái: 
+                    @if ($order[0]['status'] == 0)
+                        Chưa giao hàng
+                    @elseif ($order[0]['status'] == 1)
+                        Đang giao hàng
+                    @elseif ($order[0]['status'] == 2)
+                        Đã giao hàng
+                    @elseif ($order[0]['status'] == 3)
+                        Đã huỷ
+                    @endif
+                </p>
             </div>
-            <div class="button-container">
-                <button class="button-w100" style="background-color: rgb(175, 13, 13); border: 1px solid rgb(175, 13, 13)" id="remove_product_btn">Huỷ đơn hàng</button>
-            </div>
+            @if ($order[0]['status'] == 0)
+                <div class="button-container">
+                    <button class="button-w100" onclick="UpdateOrder({{$product['id']}}, 1)">Đang giao hàng</button>
+                </div>
+            @endif
+            @if ($order[0]['status'] == 1)
+                <div class="button-container">
+                    <button class="button-w100" onclick="UpdateOrder({{$product['id']}}, 2)">Đã giao hàng</button>
+                </div>
+            @endif
+            @if ($order[0]['status'] == 0 || $order[0]['status'] == 1)
+                <div class="button-container">
+                    <button class="button-w100" onclick="UpdateOrder({{$product['id']}}, 3)" style="background-color: rgb(175, 13, 13); border: 1px solid rgb(175, 13, 13)" id="remove_product_btn">Huỷ đơn hàng</button>
+                </div>
+            @endif
         </div>
     </div>
 </body>
@@ -57,4 +79,5 @@
 <script src="{{URL::asset('public/assets/vendor/ckeditor4/ckeditor.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/menu.js')}}"></script>
 <script src="{{URL::asset('resources/js/manage/index.js')}}"></script>
+<script src="{{URL::asset('resources/js/manage/order.js')}}"></script>
 </html>

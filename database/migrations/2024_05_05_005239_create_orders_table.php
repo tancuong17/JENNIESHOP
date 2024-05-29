@@ -26,6 +26,8 @@ return new class extends Migration
             $table->integer('status')->nullable(false);
             $table->integer('payment')->nullable(false);
             $table->integer('totalamount')->nullable(false);
+            $table->bigInteger('creator')->length(11)->nullable(true)->unsigned();
+            $table->bigInteger('updater')->length(11)->nullable(true)->unsigned();
             $table->timestamps();
         });
     }

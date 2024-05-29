@@ -92,7 +92,6 @@ class TypeProductController extends Controller
 
     public function update(Request $request){
         try {
-            $user = Auth::user();
             $condition = array();
             if(isset($request->name) == true){
                 $condition["name"] = $request->name;
