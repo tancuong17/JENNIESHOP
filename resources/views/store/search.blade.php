@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/index.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/usermenu.css')}}">
 </head>
 <body>
     @include('store.header')
     @include('store.menu')
+    @include('store.usermenu')
     <div class="text_title_left" style="margin-top: 8rem">
         <ul class="navigation">
             <li>Trang chủ</li>

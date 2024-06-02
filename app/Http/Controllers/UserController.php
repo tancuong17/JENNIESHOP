@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function loginCheck(Request $request)
+    public function loginCheckManage(Request $request)
     {
         $data = [
             'phonenumber' => $request->phonenumber,
             'password' => $request->password,
         ];
-        if (Auth::attempt($data)) {
+        if (Auth::attempt($data) && Auth::user()->type == 0) {
             $_SESSION["id"] = Auth::user()->id;
             return Redirect::to('/manage/listorder/2?page=1');
         } else {
@@ -23,10 +23,30 @@ class UserController extends Controller
         }
     }
 
+    public function loginCheck(Request $request)
+    {
+        $data = [
+            'phonenumber' => $request->phonenumber,
+            'password' => $request->password,
+        ];
+        if (Auth::attempt($data) && Auth::user()->type == 1) {
+            $_SESSION["id"] = Auth::user()->id;
+            return Redirect::to('/');
+        } else {
+            return Redirect::to('/dang-nhap');
+        }
+    }
+
     public function logout()
     {
         Auth::logout();
         return Redirect::to('/manage');
+    }
+
+    public function logoutCustomer()
+    {
+        Auth::logout();
+        return Redirect::to('/');
     }
 
     public function updateQuantityRow($request)

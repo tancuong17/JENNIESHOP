@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$news[0]['title']}}</title>
+    <title>Tin tức</title>
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/header.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/footer.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/index.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('resources/css/store/news.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/product.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/usermenu.css')}}">
@@ -19,25 +19,27 @@
     @include('store.header')
     @include('store.menu')
     @include('store.usermenu')
-    <div style="margin: 8rem 1rem 2rem" id="main_product_page">
-        <ul class="navigation">
-            <li>Trang chủ</li>
-            <li>Tin tức</li>
-        </ul>
+    <ul class="navigation" style="margin: 8rem 0 2rem 4rem">
+        <li>Trang chủ</li>
+        <li>Tin tức</li>
+    </ul>
+    <div id="news_container">
+        @foreach($news as $data)
+            <a class="news" href="./tin-tuc/{{$data["slug"]}}/{{$data["id"]}}">
+                <img src="{{env('URL_IMAGE')}}{{$data["image"]}}" alt="news">
+                <div class="news_text">
+                    <p class="text-responsive">{{$data["title"]}}</p>
+                </div>
+            </a>
+        @endforeach
     </div>
-    <div style="margin: 0 1rem 2rem">
-        <h1>{{$news[0]['title']}}</h1>
-        <p>Ngày đăng: {{$news[0]['created_at']}}</p>
-    </div>
-    <div id="news-content">
-        {!! $news[0]['content'] !!}
+    <div class="paginator-container">
+        {!! $news->links('store.paginator', ['quantity' => 2]) !!}
     </div>
     @include('store.footer')
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{URL::asset('resources/js/store/index.js')}}"></script>
-<script>
-    $("#news-content").find("img").removeAttr("style");
-</script>
+<script src="{{URL::asset('resources/js/store/product.js')}}"></script>
 </html>

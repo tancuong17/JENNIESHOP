@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$typeProduct[0]['name']}}</title>
+    <title>Sản phẩm</title>
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/header.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/footer.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/index.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/product.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/usermenu.css')}}">
@@ -18,32 +19,17 @@
     @include('store.header')
     @include('store.menu')
     @include('store.usermenu')
-    <div class="image-banner">
-        <img src="{{env('URL_IMAGE')}}{{$typeProduct[0]['image']}}" alt="banner">
-    </div>
-    <div class="text_title_left">
-        <ul class="navigation">
-            <li>Trang chủ</li>
-            <li>{{$typeProduct[0]['name']}}</li>
-        </ul>
-    </div>
-    @if(count($typeProductParents) > 0)
-    <div id="type-product-container">
-        @foreach($typeProductParents as $typeProductParent)
-            <a href="http://localhost/shop/loai-san-pham/{{$typeProductParent['slug']}}/{{$typeProductParent['id']}}?page=1" class="type-product">{{$typeProductParent['name']}}</a>
-        @endforeach
-    </div>
-    @endif
-    <div class="product_container" @if(count($products) == 0) style="display: block;" @endif>
-        @if(count($products) == 0)
-            <div id="cart-empty" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 26rem;">
-                <img style="width: 15rem; height: 15rem;" src="https://schoolville.com/assets/img/empty-cart-illustration.gif" alt="icon">
-            </div>
-        @endif
+    <ul class="navigation" style="margin: 8rem 0 2rem 4rem">
+        <li>Trang chủ</li>
+        <li>Sản phẩm</li>
+    </ul>
+    <div class="product_container">
         @foreach($products as $product)
-            <a class="product" href="http://localhost/shop/chi-tiet-san-pham/{{ $product['slug'] }}">
-                <img class="image-product" src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
-                <h1>{{ $product['name'] }}</h1>
+            <div class="product">
+                <a href="./chi-tiet-san-pham/{{ $product['slug'] }}">
+                    <img class="image-product" src="{{env('URL_IMAGE')}}{{ $images[$loop->index][0]['url'] }}" alt="product">
+                    <h1>{{ $product['name'] }}</h1>
+                </a>
                 <div class="product_bottom">
                     <div class="price">
                         @foreach($prices[$loop->index] as $price)
@@ -58,15 +44,16 @@
                         @endforeach
                     </div>
                 </div>
-            </a>
+            </div>
         @endforeach
     </div>
     <div class="paginator-container">
-        {!! $typeProductDetails->links('store.paginator', ['quantity' => 2]) !!}
+        {!! $products->links('store.paginator', ['quantity' => 2]) !!}
     </div>
     @include('store.footer')
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{URL::asset('resources/js/store/index.js')}}"></script>
+<script src="{{URL::asset('resources/js/store/product.js')}}"></script>
 </html>

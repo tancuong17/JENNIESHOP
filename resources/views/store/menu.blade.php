@@ -7,11 +7,9 @@
                 stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
         <ul>
-            <li>TRANG CHỦ</li>
-            <li>SẢN PHẨM</li>
-            <li>BỘ SƯU TẬP</li>
-            <li>KHUYỄN MÃI</li>
-            <li>TIN TỨC</li>
+            <li><a href="http://localhost/shop">TRANG CHỦ</a></li>
+            <li><a href="http://localhost/shop/san-pham">SẢN PHẨM</a></li>
+            <li><a href="http://localhost/shop/tin-tuc">TIN TỨC</a></li>
         </ul>
     </div>
 </div>

@@ -13,10 +13,12 @@
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/product.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/usermenu.css')}}">
 </head>
 <body>
     @include('store.header')
     @include('store.menu')
+    @include('store.usermenu')
     @if(count($news) != 0)
         <div class="swiper" id="banner_slider">
             <div class="swiper-wrapper">

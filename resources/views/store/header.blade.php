@@ -24,11 +24,9 @@
                 <img class="logo" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
             </a>
             <ul id="menu">
-                <li>TRANG CHỦ</li>
-                <li>SẢN PHẨM</li>
-                <li>BỘ SƯU TẬP</li>
-                <li>KHUYỄN MÃI</li>
-                <li>TIN TỨC</li>
+                <li><a href="http://localhost/shop">TRANG CHỦ</a></li>
+                <li><a href="http://localhost/shop/san-pham">SẢN PHẨM</a></li>
+                <li><a href="http://localhost/shop/tin-tuc">TIN TỨC</a></li>
             </ul>
         </div>
         <div id="right_header">
@@ -56,17 +54,24 @@
                 <p>Giỏ hàng</p>
                 <span id="quantity-in-cart">(0)</span>
             </a>
-            <a id="user_container" href="http://localhost/shop/dang-nhap">
-                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
-                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
+            @guest
+                <a id="user_container" href="http://localhost/shop/dang-nhap">
+                    <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
+                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
                     <path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="#000000"
                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path
                         d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"
                         stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <p>Đăng nhập</p>
-            </a>
+                    </svg>
+                    <p>Đăng nhập</p>
+                </a>
+            @endguest
+            @auth
+                <div id="user_container" onclick="OpenMenuUser()">
+                    <img style="width: 3rem; height: 3rem; object-fit: cover; border-radius: 50%;" src="{{env('URL_IMAGE')}}{{ auth()->user()->image }}" alt="user">  
+                </div>
+            @endauth
         </div>
     </div>
 </header>

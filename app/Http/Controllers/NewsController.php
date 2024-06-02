@@ -16,8 +16,8 @@ class NewsController extends Controller
         $news->image = $request->file('image')->store('images');
         $news->content = $request->content;
         $news->banner = $request->banner;
-        $news->creator = Auth::id();
-        $news->updater = Auth::id();
+        $news->creator = $request->user;
+        $news->updater = $request->user;
         $news->save();
         return "Thêm thành công";
     }

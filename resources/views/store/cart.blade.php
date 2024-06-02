@@ -13,10 +13,12 @@
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/cart.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
     <link rel="stylesheet" href="{{URL::asset('resources/css/store/menu_mobile.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/usermenu.css')}}">
 </head>
 <body>
     @include('store.header')
     @include('store.menu')
+    @include('store.usermenu')
     <div class="image-banner">
         <img src="https://static.vecteezy.com/system/resources/previews/002/006/605/non_2x/paper-art-shopping-online-on-smartphone-and-new-buy-sale-promotion-pink-backgroud-for-banner-market-ecommerce-free-vector.jpg" alt="banner">
     </div>
@@ -40,11 +42,11 @@
         <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%; justify-content: space-between">
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <p>Họ và tên</p>
-                <input type="text" class="input_info" placeholder="..." id="customer">
+                <input type="text" @auth value="{{ auth()->user()->name }}" @endauth class="input_info" placeholder="..." id="customer">
                 <p>Số điện thoại</p>
-                <input type="number" class="input_info" placeholder="..." id="phonenumber">
+                <input type="number" @auth value="{{ auth()->user()->phonenumber }}" @endauth class="input_info" placeholder="..." id="phonenumber">
                 <p>Email</p>
-                <input type="text" class="input_info" placeholder="..." id="email">
+                <input type="text" @auth value="{{ auth()->user()->email }}" @endauth class="input_info" placeholder="..." id="email">
                 <p>Ghi chú</p>
                 <textarea placeholder="..." id="note" style="resize: none" class="input_info"></textarea>
                 <p>Địa chỉ giao hàng</p>

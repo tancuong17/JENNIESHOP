@@ -15,13 +15,13 @@
             <img style="width: 30%; height: 5rem; object-fit: cover" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
             <p>JENNIE là THƯƠNG HIỆU THỜI TRANG phong cách FREESTYLE dành cho CÁC BẠN TRẺ chuyên để MẶC ĐI CHƠI</p>
         </div>
-        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; height: fit-content; background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); gap: 1rem">
-                <input type="text" placeholder="Số điện thoại..." style="width: 100%; height: 3rem; padding: 0.5rem; outline: none; border: 1px solid whitesmoke;">
-                <input type="password" placeholder="Mật khẩu..." style="width: 100%; height: 3rem; padding: 0.5rem; outline: none; border: 1px solid whitesmoke;">
-                <button style="width: 100%; height: 3rem; border: 1px solid black; background-color: black; padding: 0.5rem 0; outline: none; color: white;">Đăng nhập</button>
-                <p style="font-size: 0.8rem">Đăng ký <a href="#" style="color: blue; text-decoration: underline">tại đây</a> nếu chưa có tài khoản</p>
-            </div>
-        </div>
+        <form action="{{url('/logincheck')}}" method="POST" style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; height: fit-content; background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); gap: 1rem">
+            {{ csrf_field() }}    
+            <input type="text" value="0356221524" placeholder="Số điện thoại..." name="phonenumber" style="width: 100%; height: 3rem; padding: 0.5rem; outline: none; border: 1px solid whitesmoke;">
+            <input type="password" value="123" placeholder="Mật khẩu..." name="password" style="width: 100%; height: 3rem; padding: 0.5rem; outline: none; border: 1px solid whitesmoke;">
+            <button type="submit" style="width: 100%; height: 3rem; border: 1px solid black; background-color: black; padding: 0.5rem 0; outline: none; color: white;">Đăng nhập</button>
+        </form>
     </div>
 </body>
+<script src="{{URL::asset('resources/js/store/index.js')}}"></script>
 </html>

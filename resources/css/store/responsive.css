@@ -76,7 +76,7 @@
     }
 }
 
-@media only screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     #cart_container p {
         display: none;
     }
@@ -94,6 +94,10 @@
     }
 
     .product_container{
+        margin: 0 1rem 2rem;
+    }
+
+    #news_container {
         margin: 0 1rem 2rem;
     }
 
@@ -151,5 +155,15 @@
         height: 16rem;
         object-fit: cover;
         border-radius: 0.3rem 0.3rem 0 0;
+    }
+
+    #user_menu {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #user_menu {
+        width: 20%;
     }
 }

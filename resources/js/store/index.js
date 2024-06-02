@@ -17,11 +17,24 @@ $("#close_menu_mobile").click(function (e) {
     $("#menu_container_mobile").css("display", "none");
 });
 
+function OpenMenuUser() {
+    $("#user_menu_container").css("display", "flex");
+}
+
+$("#close_user_menu").click(function (e) {
+    $("#user_menu_container").css("display", "none");
+});
+
 $(document).on("click", function(event){
     var menuButton = document.getElementById("bars_container_mobile");
     var menu = document.getElementById("menu_mobile");
+    var userContainer = document.getElementById("user_container");
+    var userMenu = document.getElementById("user_menu");
     if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
         $("#menu_container_mobile").css("display", "none");
+    }
+    if (!userMenu.contains(event.target) && !userContainer.contains(event.target)) {
+        $("#user_menu_container").css("display", "none");
     }
 });
 
