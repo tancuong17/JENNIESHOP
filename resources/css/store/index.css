@@ -323,7 +323,7 @@ a {
   border: 1px solid lightgray;
 }
 
-.button-w100{
+.button-w100 {
   margin-top: 0.5rem;
   width: 100%;
   border: 1px solid black;
@@ -333,9 +333,20 @@ a {
   color: white;
 }
 
-.text-responsive{
+.text-responsive {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+#login-container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 2fr 1fr;
+  padding: 5rem;
+  gap: 5rem
 }

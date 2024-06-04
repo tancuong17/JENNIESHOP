@@ -1,7 +1,7 @@
 @auth
 <div id="user_menu_container">
-    <div id="user_menu">
-        <div style="display: flex; justify-content: space-between; align-items: center">
+    <div id="user_menu" style="background: url('https://i.pinimg.com/236x/33/c2/62/33c2625399456e7402a7e799a68bd1a9.jpg')">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid lightgray; padding-bottom: 0.5rem">
             <div style="display: flex; align-items: center; gap: 0.5rem">
                 <img style="width: 3rem; height: 3rem; object-fit: cover; border-radius: 50%;" src="{{env('URL_IMAGE')}}{{ auth()->user()->image }}" alt="user">  
                 <div>

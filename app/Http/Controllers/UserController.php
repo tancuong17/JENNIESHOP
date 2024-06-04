@@ -16,7 +16,6 @@ class UserController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($data) && Auth::user()->type == 0) {
-            $_SESSION["id"] = Auth::user()->id;
             return Redirect::to('/manage/listorder/2?page=1');
         } else {
             return Redirect::to('/manage');
@@ -30,7 +29,6 @@ class UserController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($data) && Auth::user()->type == 1) {
-            $_SESSION["id"] = Auth::user()->id;
             return Redirect::to('/');
         } else {
             return Redirect::to('/dang-nhap');

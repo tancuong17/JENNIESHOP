@@ -326,4 +326,8 @@
         $news = $newsController->gets(10, "");
         return view('store.newslist', compact('news'));
     });
+
+    Route::get('/get-google-sign-in-url', [\App\Http\Controllers\GoogleController::class, 'getGoogleSignInUrl']);
+    
+    Route::get('/callback', [\App\Http\Controllers\GoogleController::class, 'loginCallback']);
 ?>

@@ -157,8 +157,12 @@
         border-radius: 0.3rem 0.3rem 0 0;
     }
 
-    #user_menu {
-        width: 70%;
+    #login-container {
+        grid-template-columns: 1fr;
+    }
+
+    #logo-login{
+        display: none;
     }
 }
 

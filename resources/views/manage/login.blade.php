@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{URL::asset('resources/css/manage/index.css')}}">
 </head>
 <body>
-    <div style="width: 100vw; height: 100vh; display: grid; justify-content: center; align-items: center; grid-template-columns: 2fr 1fr; padding: 5rem; gap: 5rem">
+    <div id="login-container" style="width: 100vw; height: 100vh; display: grid; justify-content: center; align-items: center; grid-template-columns: 2fr 1fr; padding: 5rem; gap: 5rem">
         <div>
             <img style="width: 30%; height: 5rem; object-fit: cover" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
             <p>JENNIE là THƯƠNG HIỆU THỜI TRANG phong cách FREESTYLE dành cho CÁC BẠN TRẺ chuyên để MẶC ĐI CHƠI</p>

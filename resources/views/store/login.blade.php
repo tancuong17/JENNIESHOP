@@ -7,11 +7,12 @@
     <title>Đăng nhập</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk" rel="stylesheet">
     <link rel="shortcut icon" href="{{URL::asset('storage/app/images/logo.jpg')}}">
-    <link rel="stylesheet" href="{{URL::asset('resources/css/manage/index.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/index.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('resources/css/store/responsive.css')}}">
 </head>
 <body>
-    <div style="width: 100vw; height: 100vh; display: grid; justify-content: center; align-items: center; grid-template-columns: 2fr 1fr; padding: 5rem; gap: 5rem">
-        <div>
+    <div id="login-container">
+        <div id="logo-login">
             <img style="width: 30%; height: 5rem; object-fit: cover" src="{{URL::asset('storage/app/images/logo.jpg')}}" alt="logo">
             <p>JENNIE là THƯƠNG HIỆU THỜI TRANG phong cách FREESTYLE dành cho CÁC BẠN TRẺ chuyên để MẶC ĐI CHƠI</p>
         </div>
@@ -20,6 +21,11 @@
             <input type="text" value="0356221524" placeholder="Số điện thoại..." name="phonenumber" style="width: 100%; height: 3rem; padding: 0.5rem; outline: none; border: 1px solid whitesmoke;">
             <input type="password" value="123" placeholder="Mật khẩu..." name="password" style="width: 100%; height: 3rem; padding: 0.5rem; outline: none; border: 1px solid whitesmoke;">
             <button type="submit" style="width: 100%; height: 3rem; border: 1px solid black; background-color: black; padding: 0.5rem 0; outline: none; color: white;">Đăng nhập</button>
+            <a href="./get-google-sign-in-url" style="width: 100%; display: flex; align-items: center; border: 1px solid lightgray; display: flex; justify-content: center; align-items: center;">
+                <img style="width: 3rem; height: 3rem; object-fit: cover;" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="logo">
+                <p style="font-size: 13px;">Đăng nhập bằng tài khoản Google</p>
+            </a>
+            <p style="font-size: 12px">Đăng kí <a href="#" style="color: blue; text-decoration: underline">tại đây</a> nếu bạn chưa có tài khoản</p>
         </form>
     </div>
 </body>
