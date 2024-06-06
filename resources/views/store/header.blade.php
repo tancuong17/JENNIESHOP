@@ -69,7 +69,11 @@
             @endguest
             @auth
                 <div id="user_container" onclick="OpenMenuUser()">
-                    <img style="width: 3rem; height: 3rem; object-fit: cover; border-radius: 50%;" src="{{env('URL_IMAGE')}}{{ auth()->user()->image }}" alt="user">  
+                    @if(auth()->user()->google_id != "" || auth()->user()->facebook_id != "")
+                        <img style="width: 3rem; height: 3rem; object-fit: cover; border-radius: 50%;" src="{{ auth()->user()->image }}" alt="user">
+                    @else
+                        <img style="width: 3rem; height: 3rem; object-fit: cover; border-radius: 50%;" src="{{env('URL_IMAGE')}}{{ auth()->user()->image }}" alt="user">
+                    @endif
                 </div>
             @endauth
         </div>

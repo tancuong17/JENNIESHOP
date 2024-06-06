@@ -256,7 +256,7 @@
         }
     });
 
-    Route::post('/manage/logincheckmanage', [UserController::class, 'loginCheckManage']);
+    Route::post('/manage/logincheckmanager', [UserController::class, 'loginCheckManage']);
 
     Route::post('/logincheck', [UserController::class, 'loginCheck']);
 
@@ -330,4 +330,8 @@
     Route::get('/get-google-sign-in-url', [\App\Http\Controllers\GoogleController::class, 'getGoogleSignInUrl']);
     
     Route::get('/callback', [\App\Http\Controllers\GoogleController::class, 'loginCallback']);
+
+    Route::get('/get-facebook-sign-in-url', [\App\Http\Controllers\FacebookController::class, 'getFacebookSignInUrl']);
+    
+    Route::get('/facebookcallback', [\App\Http\Controllers\FacebookController::class, 'loginCallback']);
 ?>
