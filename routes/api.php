@@ -91,7 +91,8 @@ Route::post('addorder', function (Request $request){
     try {
         $orderController = new OrderController();
         $result = $orderController->add($request);
-        return json_encode($result);
+        event(new App\Events\PusherEvent($result));
+        return json_encode("Đặt mua thành công!");
     } catch (\Throwable $th) {
         return json_encode($th);
     }

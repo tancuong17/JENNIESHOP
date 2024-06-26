@@ -30,7 +30,7 @@ class OrderController extends Controller
                 $orderDetailController->add($cart[$i], $order->id);
             }
             $customer->add($request->customer, $request->phonenumber, $request->email);
-            return "Đặt hàng thành công";
+            return $order;
         } catch (\Throwable $th) {
             return json_encode($th);
         }

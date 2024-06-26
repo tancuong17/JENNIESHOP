@@ -1,3 +1,5 @@
+
+
 var perfEntries = performance.getEntriesByType("navigation");
 (function () {
     window.onpageshow = function(event) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Size;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\TypeProductDetail;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ImageController;
@@ -131,6 +132,7 @@ class ProductController extends Controller
             $priceController->deleteByIdProduct($idProduct);
             $priceController->deleteByIdProduct($idProduct);
             $imageController->deleteByIdProduct($idProduct);
+            TypeProductDetail::where('id_product', $idProduct)->delete();
             Product::where('id', $idProduct)->delete();
             return "Xoá thành công";
         } catch (\Throwable $th) {

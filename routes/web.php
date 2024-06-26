@@ -334,4 +334,6 @@
     Route::get('/get-facebook-sign-in-url', [\App\Http\Controllers\FacebookController::class, 'getFacebookSignInUrl']);
     
     Route::get('/facebookcallback', [\App\Http\Controllers\FacebookController::class, 'loginCallback']);
+
+    Route::get('/pay', [\App\Http\Controllers\ZaloPayController::class, 'create']);
 ?>
